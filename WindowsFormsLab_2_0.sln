@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsLab_2_0", "WindowsFormsLab_2_0\WindowsFormsLab_2_0.csproj", "{D3AA0250-AF8B-492C-B3F6-FBC4F07D40C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Figure", "Figure\Figure.csproj", "{BBE19BED-48CC-4A88-8D13-4BC401478B85}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3AA0250-AF8B-492C-B3F6-FBC4F07D40C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3AA0250-AF8B-492C-B3F6-FBC4F07D40C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3AA0250-AF8B-492C-B3F6-FBC4F07D40C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3AA0250-AF8B-492C-B3F6-FBC4F07D40C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBE19BED-48CC-4A88-8D13-4BC401478B85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBE19BED-48CC-4A88-8D13-4BC401478B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBE19BED-48CC-4A88-8D13-4BC401478B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBE19BED-48CC-4A88-8D13-4BC401478B85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {28BD3B6C-15BD-42CB-A848-4497D8C040A3}
+	EndGlobalSection
+EndGlobal
