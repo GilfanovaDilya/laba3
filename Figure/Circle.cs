@@ -10,7 +10,7 @@ namespace Figure
 
         public void ChangeRadius(int _w)
         {
-            if ((w + _w) < Init.pictureBox.Width || (w + _w) < Init.pictureBox.Height) return;
+            if ((w + _w < 0) || (x + w + _w) > Init.pictureBox.Width || (y + w + _w) > Init.pictureBox.Height) return;
             w += _w;
             DeleteF(this, Init.pictureBox, false);
             Draw();

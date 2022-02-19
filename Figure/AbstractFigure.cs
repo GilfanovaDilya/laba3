@@ -60,7 +60,8 @@ namespace Figure
 
         public bool OutOfBoundsCheck(int x, int y)
         {
-            return !((this.x + x < 0 && this.y + y < 0) || (this.y + y < 0) || (this.x + x > Init.pictureBox.Width && this.y + y < 0) || (this.x + this.w + x > Init.pictureBox.Width) || (this.x + x > Init.pictureBox.Width && this.y + y > Init.pictureBox.Height) || (this.y + this.h + y > Init.pictureBox.Height) || (this.x + x < 0 && this.y + y > Init.pictureBox.Height) || (this.x + x < 0));
+            return !((this.x + x < 0) || (this.y + y < 0) || (this.x + this.w + x > Init.pictureBox.Width) ||
+                     (this.y + this.h + y > Init.pictureBox.Height));
         }
     }
 }

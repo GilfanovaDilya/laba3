@@ -38,7 +38,7 @@ namespace Figure
 
         public void ChangeLineDim(int _w, int _h)
         {
-            if ((w + _w) < Init.pictureBox.Width || (h + _h) < Init.pictureBox.Height) return;
+            if ((w + _w < 0) || (h + _h < 0) || (x + w + _w) < Init.pictureBox.Width || (y + h + _h) < Init.pictureBox.Height) return;
             w += _w;
             h += _h;
             DeleteF(this, Init.pictureBox, false);

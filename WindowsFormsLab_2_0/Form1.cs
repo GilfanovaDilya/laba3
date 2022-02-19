@@ -28,25 +28,66 @@ namespace WindowsFormsLab_2_0
             double x = 500.0;
             double y = 500.0;
             double w = 500.0;
-            var figure1 = new Square(x - w / 2.0, y - w / 2.0, w);
-            var figure2 = new MPoint(x, y);
-            Sun figureSun = new Sun(x, y, w);
-            figureSun.Draw();
-            ShapeContainer.AddFigure(figureSun);
+            var figure1 = new Sun(x,y,w);
             figure1.Draw();
             ShapeContainer.AddFigure(figure1);
-            figure2.Draw();
-            ShapeContainer.AddFigure(figure2);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int x = int.Parse(textBox1.Text);
-            int y = int.Parse(textBox2.Text);
-            foreach (Figure.Figure sFigure in ShapeContainer.figures.ToList())
+            int x = int.Parse(Square_X.Text);
+            int y = int.Parse(Square_Y.Text);
+            throw new NotImplementedException();
+        }
+
+        public Triangle CreateTriangle(double X1, double Y1, double X2, double Y2, double X3, double Y3, double x, double y, double w)
+        {
+            return new Triangle(new[]
             {
-                sFigure.MoveTo(x,y);
-            }
+                new PointF((float) (x + X1 * w), (float) (y + Y1 * w)),
+                new PointF((float) (x + X2 * w), (float) (y + Y2 * w)),
+                new PointF((float) (x + X3 * w), (float) (y + Y3 * w))
+            });
+        }
+
+        private void Square_C_Click(object sender, EventArgs e)
+        {
+            var square = new Square(double.Parse(Square_X.Text), double.Parse(Square_Y.Text),
+                double.Parse(Square_W.Text));
+            square.Draw();
+            ShapeContainer.AddFigure(square);
+        }
+
+        private void Rectangle_C_Click(object sender, EventArgs e)
+        {
+            var rectangle = new Figure.Rectangle(double.Parse(Rectangle_X.Text), double.Parse(Rectangle_Y.Text),
+                double.Parse(Rectangle_W.Text), double.Parse(Rectangle_H.Text));
+            rectangle.Draw();
+            ShapeContainer.AddFigure(rectangle);
+        }
+
+        private void Ellipse_C_Click(object sender, EventArgs e)
+        {
+            var ellipse = new Figure.Ellipse(double.Parse(Ellipse_X.Text), double.Parse(Ellipse_Y.Text),
+                double.Parse(Ellipse_W.Text), double.Parse(Ellipse_H.Text));
+            ellipse.Draw();
+            ShapeContainer.AddFigure(ellipse);
+        }
+
+        private void Circle_C_Click(object sender, EventArgs e)
+        {
+            var circle = new Circle(double.Parse(Circle_X.Text), double.Parse(Circle_Y.Text),
+                double.Parse(Circle_W.Text));
+            circle.Draw();
+            ShapeContainer.AddFigure(circle);
+        }
+
+        private void Sun_C_Click(object sender, EventArgs e)
+        {
+            var sun = new Sun(double.Parse(Sun_X.Text), double.Parse(Sun_Y.Text),
+                double.Parse(Sun_W.Text));
+            sun.Draw();
+            ShapeContainer.AddFigure(sun);
         }
     }
 }
