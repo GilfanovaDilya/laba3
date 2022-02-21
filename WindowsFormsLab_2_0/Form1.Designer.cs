@@ -37,43 +37,37 @@ namespace WindowsFormsLab_2_0
             this.Square_X = new System.Windows.Forms.TextBox();
             this.Square_C = new System.Windows.Forms.Button();
             this.Rectangle = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.Rectangle_H = new System.Windows.Forms.TextBox();
             this.Rectangle_W = new System.Windows.Forms.TextBox();
             this.Rectangle_Y = new System.Windows.Forms.TextBox();
             this.Rectangle_X = new System.Windows.Forms.TextBox();
             this.Rectangle_C = new System.Windows.Forms.Button();
             this.Ellipse = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.Ellipse_H = new System.Windows.Forms.TextBox();
             this.Ellipse_W = new System.Windows.Forms.TextBox();
             this.Ellipse_Y = new System.Windows.Forms.TextBox();
             this.Ellipse_X = new System.Windows.Forms.TextBox();
             this.Ellipse_C = new System.Windows.Forms.Button();
             this.Circle = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
             this.Circle_W = new System.Windows.Forms.TextBox();
             this.Circle_Y = new System.Windows.Forms.TextBox();
             this.Circle_X = new System.Windows.Forms.TextBox();
             this.Circle_C = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.button10 = new System.Windows.Forms.Button();
+            this.Polygon_Add = new System.Windows.Forms.Button();
+            this.Polygon_Y = new System.Windows.Forms.TextBox();
+            this.Polygon_X = new System.Windows.Forms.TextBox();
+            this.Polygon_N = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.button11 = new System.Windows.Forms.Button();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.button12 = new System.Windows.Forms.Button();
+            this.Triangle_N = new System.Windows.Forms.Button();
+            this.Triangle_Y = new System.Windows.Forms.TextBox();
+            this.Triangle_X = new System.Windows.Forms.TextBox();
+            this.Triangle_Add = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.button13 = new System.Windows.Forms.Button();
             this.Sun_W = new System.Windows.Forms.TextBox();
             this.Sun_Y = new System.Windows.Forms.TextBox();
             this.Sun_X = new System.Windows.Forms.TextBox();
             this.Sun_C = new System.Windows.Forms.Button();
-            this.Rectangle_H = new System.Windows.Forms.TextBox();
-            this.Ellipse_H = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.Square.SuspendLayout();
             this.Rectangle.SuspendLayout();
@@ -95,7 +89,6 @@ namespace WindowsFormsLab_2_0
             // 
             // Square
             // 
-            this.Square.Controls.Add(this.button2);
             this.Square.Controls.Add(this.Square_W);
             this.Square.Controls.Add(this.Square_Y);
             this.Square.Controls.Add(this.Square_X);
@@ -109,7 +102,7 @@ namespace WindowsFormsLab_2_0
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(131, 20);
+            this.button2.Location = new System.Drawing.Point(1466, 588);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -151,7 +144,6 @@ namespace WindowsFormsLab_2_0
             // Rectangle
             // 
             this.Rectangle.Controls.Add(this.Rectangle_H);
-            this.Rectangle.Controls.Add(this.button3);
             this.Rectangle.Controls.Add(this.Rectangle_W);
             this.Rectangle.Controls.Add(this.Rectangle_Y);
             this.Rectangle.Controls.Add(this.Rectangle_X);
@@ -163,14 +155,12 @@ namespace WindowsFormsLab_2_0
             this.Rectangle.TabStop = false;
             this.Rectangle.Text = "Rectangle";
             // 
-            // button3
+            // Rectangle_H
             // 
-            this.button3.Location = new System.Drawing.Point(131, 20);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.Rectangle_H.Location = new System.Drawing.Point(18, 139);
+            this.Rectangle_H.Name = "Rectangle_H";
+            this.Rectangle_H.Size = new System.Drawing.Size(100, 20);
+            this.Rectangle_H.TabIndex = 6;
             // 
             // Rectangle_W
             // 
@@ -206,7 +196,6 @@ namespace WindowsFormsLab_2_0
             // Ellipse
             // 
             this.Ellipse.Controls.Add(this.Ellipse_H);
-            this.Ellipse.Controls.Add(this.button5);
             this.Ellipse.Controls.Add(this.Ellipse_W);
             this.Ellipse.Controls.Add(this.Ellipse_Y);
             this.Ellipse.Controls.Add(this.Ellipse_X);
@@ -218,14 +207,12 @@ namespace WindowsFormsLab_2_0
             this.Ellipse.TabStop = false;
             this.Ellipse.Text = "Ellipse";
             // 
-            // button5
+            // Ellipse_H
             // 
-            this.button5.Location = new System.Drawing.Point(131, 20);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            this.Ellipse_H.Location = new System.Drawing.Point(18, 139);
+            this.Ellipse_H.Name = "Ellipse_H";
+            this.Ellipse_H.Size = new System.Drawing.Size(100, 20);
+            this.Ellipse_H.TabIndex = 6;
             // 
             // Ellipse_W
             // 
@@ -260,7 +247,6 @@ namespace WindowsFormsLab_2_0
             // 
             // Circle
             // 
-            this.Circle.Controls.Add(this.button7);
             this.Circle.Controls.Add(this.Circle_W);
             this.Circle.Controls.Add(this.Circle_Y);
             this.Circle.Controls.Add(this.Circle_X);
@@ -271,15 +257,6 @@ namespace WindowsFormsLab_2_0
             this.Circle.TabIndex = 6;
             this.Circle.TabStop = false;
             this.Circle.Text = "Circle";
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(131, 20);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 5;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
             // 
             // Circle_W
             // 
@@ -314,11 +291,10 @@ namespace WindowsFormsLab_2_0
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.button9);
-            this.groupBox5.Controls.Add(this.textBox13);
-            this.groupBox5.Controls.Add(this.textBox14);
-            this.groupBox5.Controls.Add(this.textBox15);
-            this.groupBox5.Controls.Add(this.button10);
+            this.groupBox5.Controls.Add(this.Polygon_Add);
+            this.groupBox5.Controls.Add(this.Polygon_Y);
+            this.groupBox5.Controls.Add(this.Polygon_X);
+            this.groupBox5.Controls.Add(this.Polygon_N);
             this.groupBox5.Location = new System.Drawing.Point(1195, 374);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(247, 189);
@@ -326,52 +302,49 @@ namespace WindowsFormsLab_2_0
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Polygon";
             // 
-            // button9
+            // Polygon_Add
             // 
-            this.button9.Location = new System.Drawing.Point(131, 20);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 5;
-            this.button9.Text = "button9";
-            this.button9.UseVisualStyleBackColor = true;
+            this.Polygon_Add.Enabled = false;
+            this.Polygon_Add.Location = new System.Drawing.Point(32, 101);
+            this.Polygon_Add.Name = "Polygon_Add";
+            this.Polygon_Add.Size = new System.Drawing.Size(75, 23);
+            this.Polygon_Add.TabIndex = 5;
+            this.Polygon_Add.Text = "AddDot";
+            this.Polygon_Add.UseVisualStyleBackColor = true;
+            this.Polygon_Add.Click += new System.EventHandler(this.Polygon_Add_Click);
             // 
-            // textBox13
+            // Polygon_Y
             // 
-            this.textBox13.Location = new System.Drawing.Point(18, 113);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(100, 20);
-            this.textBox13.TabIndex = 4;
+            this.Polygon_Y.Enabled = false;
+            this.Polygon_Y.Location = new System.Drawing.Point(18, 75);
+            this.Polygon_Y.Name = "Polygon_Y";
+            this.Polygon_Y.Size = new System.Drawing.Size(100, 20);
+            this.Polygon_Y.TabIndex = 2;
             // 
-            // textBox14
+            // Polygon_X
             // 
-            this.textBox14.Location = new System.Drawing.Point(18, 87);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(100, 20);
-            this.textBox14.TabIndex = 2;
+            this.Polygon_X.Enabled = false;
+            this.Polygon_X.Location = new System.Drawing.Point(18, 49);
+            this.Polygon_X.Name = "Polygon_X";
+            this.Polygon_X.Size = new System.Drawing.Size(100, 20);
+            this.Polygon_X.TabIndex = 1;
             // 
-            // textBox15
+            // Polygon_N
             // 
-            this.textBox15.Location = new System.Drawing.Point(18, 60);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(100, 20);
-            this.textBox15.TabIndex = 1;
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(32, 19);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 0;
-            this.button10.Text = "button10";
-            this.button10.UseVisualStyleBackColor = true;
+            this.Polygon_N.Location = new System.Drawing.Point(32, 20);
+            this.Polygon_N.Name = "Polygon_N";
+            this.Polygon_N.Size = new System.Drawing.Size(75, 23);
+            this.Polygon_N.TabIndex = 0;
+            this.Polygon_N.Text = "New Polygon";
+            this.Polygon_N.UseVisualStyleBackColor = true;
+            this.Polygon_N.Click += new System.EventHandler(this.Polygon_N_Click);
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.button11);
-            this.groupBox6.Controls.Add(this.textBox16);
-            this.groupBox6.Controls.Add(this.textBox17);
-            this.groupBox6.Controls.Add(this.textBox18);
-            this.groupBox6.Controls.Add(this.button12);
+            this.groupBox6.Controls.Add(this.Triangle_N);
+            this.groupBox6.Controls.Add(this.Triangle_Y);
+            this.groupBox6.Controls.Add(this.Triangle_X);
+            this.groupBox6.Controls.Add(this.Triangle_Add);
             this.groupBox6.Location = new System.Drawing.Point(1448, 374);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(247, 189);
@@ -379,48 +352,45 @@ namespace WindowsFormsLab_2_0
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Triangle";
             // 
-            // button11
+            // Triangle_N
             // 
-            this.button11.Location = new System.Drawing.Point(131, 20);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 5;
-            this.button11.Text = "button11";
-            this.button11.UseVisualStyleBackColor = true;
+            this.Triangle_N.Location = new System.Drawing.Point(32, 19);
+            this.Triangle_N.Name = "Triangle_N";
+            this.Triangle_N.Size = new System.Drawing.Size(75, 23);
+            this.Triangle_N.TabIndex = 5;
+            this.Triangle_N.Text = "New";
+            this.Triangle_N.UseVisualStyleBackColor = true;
+            this.Triangle_N.Click += new System.EventHandler(this.Triangle_N_Click);
             // 
-            // textBox16
+            // Triangle_Y
             // 
-            this.textBox16.Location = new System.Drawing.Point(18, 113);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(100, 20);
-            this.textBox16.TabIndex = 4;
+            this.Triangle_Y.Enabled = false;
+            this.Triangle_Y.Location = new System.Drawing.Point(18, 75);
+            this.Triangle_Y.Name = "Triangle_Y";
+            this.Triangle_Y.Size = new System.Drawing.Size(100, 20);
+            this.Triangle_Y.TabIndex = 2;
             // 
-            // textBox17
+            // Triangle_X
             // 
-            this.textBox17.Location = new System.Drawing.Point(18, 87);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(100, 20);
-            this.textBox17.TabIndex = 2;
+            this.Triangle_X.Enabled = false;
+            this.Triangle_X.Location = new System.Drawing.Point(18, 48);
+            this.Triangle_X.Name = "Triangle_X";
+            this.Triangle_X.Size = new System.Drawing.Size(100, 20);
+            this.Triangle_X.TabIndex = 1;
             // 
-            // textBox18
+            // Triangle_Add
             // 
-            this.textBox18.Location = new System.Drawing.Point(18, 60);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(100, 20);
-            this.textBox18.TabIndex = 1;
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(32, 19);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 0;
-            this.button12.Text = "button12";
-            this.button12.UseVisualStyleBackColor = true;
+            this.Triangle_Add.Enabled = false;
+            this.Triangle_Add.Location = new System.Drawing.Point(32, 101);
+            this.Triangle_Add.Name = "Triangle_Add";
+            this.Triangle_Add.Size = new System.Drawing.Size(75, 23);
+            this.Triangle_Add.TabIndex = 0;
+            this.Triangle_Add.Text = "AddDot";
+            this.Triangle_Add.UseVisualStyleBackColor = true;
+            this.Triangle_Add.Click += new System.EventHandler(this.Triangle_Add_Click);
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.button13);
             this.groupBox7.Controls.Add(this.Sun_W);
             this.groupBox7.Controls.Add(this.Sun_Y);
             this.groupBox7.Controls.Add(this.Sun_X);
@@ -431,15 +401,6 @@ namespace WindowsFormsLab_2_0
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Sun";
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(131, 20);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
-            this.button13.TabIndex = 5;
-            this.button13.Text = "button13";
-            this.button13.UseVisualStyleBackColor = true;
             // 
             // Sun_W
             // 
@@ -472,25 +433,12 @@ namespace WindowsFormsLab_2_0
             this.Sun_C.UseVisualStyleBackColor = true;
             this.Sun_C.Click += new System.EventHandler(this.Sun_C_Click);
             // 
-            // Rectangle_H
-            // 
-            this.Rectangle_H.Location = new System.Drawing.Point(18, 139);
-            this.Rectangle_H.Name = "Rectangle_H";
-            this.Rectangle_H.Size = new System.Drawing.Size(100, 20);
-            this.Rectangle_H.TabIndex = 6;
-            // 
-            // Ellipse_H
-            // 
-            this.Ellipse_H.Location = new System.Drawing.Point(18, 139);
-            this.Ellipse_H.Name = "Ellipse_H";
-            this.Ellipse_H.Size = new System.Drawing.Size(100, 20);
-            this.Ellipse_H.TabIndex = 6;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1775, 904);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
@@ -530,37 +478,31 @@ namespace WindowsFormsLab_2_0
         private System.Windows.Forms.Button Square_C;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox Rectangle;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox Rectangle_W;
         private System.Windows.Forms.TextBox Rectangle_Y;
         private System.Windows.Forms.TextBox Rectangle_X;
         private System.Windows.Forms.Button Rectangle_C;
         private System.Windows.Forms.GroupBox Ellipse;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox Ellipse_W;
         private System.Windows.Forms.TextBox Ellipse_Y;
         private System.Windows.Forms.TextBox Ellipse_X;
         private System.Windows.Forms.Button Ellipse_C;
         private System.Windows.Forms.GroupBox Circle;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.TextBox Circle_W;
         private System.Windows.Forms.TextBox Circle_Y;
         private System.Windows.Forms.TextBox Circle_X;
         private System.Windows.Forms.Button Circle_C;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button Polygon_Add;
+        private System.Windows.Forms.TextBox Polygon_Y;
+        private System.Windows.Forms.TextBox Polygon_X;
+        private System.Windows.Forms.Button Polygon_N;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button Triangle_N;
+        private System.Windows.Forms.TextBox Triangle_Y;
+        private System.Windows.Forms.TextBox Triangle_X;
+        private System.Windows.Forms.Button Triangle_Add;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Button button13;
         private System.Windows.Forms.TextBox Sun_W;
         private System.Windows.Forms.TextBox Sun_Y;
         private System.Windows.Forms.TextBox Sun_X;

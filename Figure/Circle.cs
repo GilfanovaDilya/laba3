@@ -4,9 +4,15 @@ namespace Figure
 {
     public class Circle : Ellipse
     {
+        public static int numberOfCircle = 0;
         public Circle()
         { }
-        public Circle(double x, double y, double w) : base(x,  y,  w,  w) { }
+
+        public Circle(double x, double y, double w) : base(x, y, w, w)
+        {
+            name = "Circle " + numberOfCircle;
+            numberOfCircle++;
+        }
 
         public void ChangeRadius(int _w)
         {

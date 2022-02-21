@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace Figure
 {
     public class Sun : Figure
     {
+        public static int numberOfSun = 0;
         private double _x { get; set; }
         private double _y { get; set; }
         private double _w { get; set; }
@@ -17,7 +19,7 @@ namespace Figure
             _y = 0;
             _w = 0;
             centerCircle = new Circle();
-            Triangles = new []{new Triangle()};
+            Triangles = new[] {new Triangle()};
         }
 
         public Sun(double x, double y, double w)
@@ -25,12 +27,13 @@ namespace Figure
             _x = x;
             _y = y;
             _w = w;
-            if (OutOfBoundsCheck(0,0))
+            if (OutOfBoundsCheck(0, 0))
             {
                 centerCircle = new Circle();
-                Triangles = new[] { new Triangle() };
+                Triangles = new[] {new Triangle()};
                 return;
             }
+
             centerCircle = new Circle(_x - 0.7 * _w / 2.0, _y - 0.7 * _w / 2.0, 0.7 * _w);
             Triangles = new[]
             {
@@ -83,6 +86,8 @@ namespace Figure
                     Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
                     Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)))
             };
+            name = "Sun " + numberOfSun.ToString();
+            numberOfSun++;
         }
 
         public override void Draw()
@@ -105,10 +110,10 @@ namespace Figure
             centerCircle.y += y;
             foreach (var triangle in Triangles)
             {
-                for (var i = 0; i < triangle.PointFs.Length; i++)
+                for (var i = 0; i < triangle.PointFs.Count; i++)
                 {
-                    triangle.PointFs[i].X += x;
-                    triangle.PointFs[i].Y += y;
+                    triangle.PointFs.ToArray()[i].X += x;
+                    triangle.PointFs.ToArray()[i].Y += y;
                 }
             }
 
@@ -118,7 +123,7 @@ namespace Figure
 
         public Triangle CreateTriangle(double X1, double Y1, double X2, double Y2, double X3, double Y3)
         {
-            return new Triangle(new[]
+            return new Triangle(new List<PointF>()
             {
                 new PointF((float) (_x + X1 * _w), (float) (_y + Y1 * _w)),
                 new PointF((float) (_x + X2 * _w), (float) (_y + Y2 * _w)),
@@ -128,7 +133,8 @@ namespace Figure
 
         private new bool OutOfBoundsCheck(int x, int y)
         {
-            return ((_x - 0.5 * _w + x < 0) || (_y - 0.5 * _w + y < 0) || (_x + 0.5 * _w + x > Init.pictureBox.Width) || (_y + 0.5 * _w + y > Init.pictureBox.Height));
+            return ((_x - 0.5 * _w + x < 0) || (_y - 0.5 * _w + y < 0) || (_x + 0.5 * _w + x > Init.pictureBox.Width) ||
+                    (_y + 0.5 * _w + y > Init.pictureBox.Height));
         }
     }
 }

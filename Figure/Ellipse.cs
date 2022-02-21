@@ -4,6 +4,7 @@ namespace Figure
 {
     public class Ellipse : Figure
     {
+        public static int numberOfEllipse = 0;
         public Ellipse()
         {
             x = 0;
@@ -18,6 +19,8 @@ namespace Figure
             this.y = y;
             this.w = w;
             this.h = h;
+            name = "Ellipse " + numberOfEllipse;
+            numberOfEllipse++;
         }
         public override void Draw()
         {

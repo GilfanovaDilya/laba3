@@ -17,10 +17,12 @@ namespace Figure
 
     public abstract class Figure
     {
+
         public double x { get; set; }
         public double y { get; set; }
         public double w { get; set; }
         public double h { get; set; }
+        public string name { get; set; }
         public abstract void Draw();
         public abstract void MoveTo(int x, int y);
 

@@ -4,6 +4,7 @@ namespace Figure
 {
     public class Rectangle : Figure
     {
+        public static int numberOfRectangle = 0;
         public Rectangle()
         {
             x = 0;
@@ -18,6 +19,8 @@ namespace Figure
             this.y = y;
             this.w = w;
             this.h = h;
+            name = "Rectangle " + numberOfRectangle;
+            numberOfRectangle++;
         }
 
         public override void Draw()

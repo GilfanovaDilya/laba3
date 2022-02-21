@@ -1,11 +1,23 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms.VisualStyles;
 
 namespace Figure
 {
     public class Triangle : Polygon
     {
-        public Triangle() :base() {}
-        public Triangle(PointF[] triFs) : base(triFs) {}
+        public static int numberOfTriangle = 0;
+
+        public Triangle() : base()
+        {
+            name = "Triangle " + numberOfTriangle;
+            numberOfTriangle++;
+        }
+
+        public Triangle(List<PointF> triFs) : base(triFs)
+        {
+            name = "Triangle " + numberOfTriangle;
+            numberOfTriangle++;
+        }
     }
 }

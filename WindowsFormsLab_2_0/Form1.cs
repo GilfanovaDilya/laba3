@@ -28,7 +28,7 @@ namespace WindowsFormsLab_2_0
             double x = 500.0;
             double y = 500.0;
             double w = 500.0;
-            var figure1 = new Sun(x,y,w);
+            var figure1 = new Sun(x, y, w);
             figure1.Draw();
             ShapeContainer.AddFigure(figure1);
         }
@@ -40,9 +40,10 @@ namespace WindowsFormsLab_2_0
             throw new NotImplementedException();
         }
 
-        public Triangle CreateTriangle(double X1, double Y1, double X2, double Y2, double X3, double Y3, double x, double y, double w)
+        public Triangle CreateTriangle(double X1, double Y1, double X2, double Y2, double X3, double Y3, double x,
+            double y, double w)
         {
-            return new Triangle(new[]
+            return new Triangle(new List<PointF>()
             {
                 new PointF((float) (x + X1 * w), (float) (y + Y1 * w)),
                 new PointF((float) (x + X2 * w), (float) (y + Y2 * w)),
@@ -88,6 +89,42 @@ namespace WindowsFormsLab_2_0
                 double.Parse(Sun_W.Text));
             sun.Draw();
             ShapeContainer.AddFigure(sun);
+        }
+
+        private void Polygon_N_Click(object sender, EventArgs e)
+        {
+            Polygon_X.Text = "";
+            Polygon_Y.Text = "";
+            Polygon_X.Enabled = true;
+            Polygon_Y.Enabled = true;
+            Polygon_Add.Enabled = true;
+            ShapeContainer.AddFigure(new Polygon());
+        }
+
+        private void Polygon_Add_Click(object sender, EventArgs e)
+        {
+            var polygon = ShapeContainer.figures.Last();
+            ((Polygon) polygon).AddDot(new PointF(float.Parse(Polygon_X.Text), float.Parse(Polygon_Y.Text)));
+            Polygon_X.Text = "";
+            Polygon_Y.Text = "";
+        }
+
+        private void Triangle_N_Click(object sender, EventArgs e)
+        {
+            Triangle_X.Text = "";
+            Triangle_Y.Text = "";
+            Triangle_X.Enabled = true;
+            Triangle_Y.Enabled = true;
+            Triangle_Add.Enabled = true;
+            ShapeContainer.AddFigure(new Triangle());
+        }
+
+        private void Triangle_Add_Click(object sender, EventArgs e)
+        {
+            var triangle = ShapeContainer.figures.Last();
+            ((Triangle)triangle).AddDot(new PointF(float.Parse(Triangle_X.Text), float.Parse(Triangle_Y.Text)));
+            Triangle_X.Text = "";
+            Triangle_Y.Text = "";
         }
     }
 }
