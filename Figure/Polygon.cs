@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace Figure
 {
@@ -14,8 +12,6 @@ namespace Figure
         public Polygon()
         {
             PointFs = new List<PointF>{};
-            name = "Polygon " + numberOfPolygon;
-            numberOfPolygon++;
         }
 
         public Polygon(List<PointF> points)
@@ -27,6 +23,11 @@ namespace Figure
         public override void Draw()
         {
             if (PointFs.Count < 2) return;
+            if (OutOfBoundsCheck(0,0))
+            {
+                Messages.Add("You enter invalid values. Try one more time)");
+                return;
+            }
             var graphic = Graphics.FromImage(Init.bitmap);
             graphic.DrawPolygon(Init.pen, PointFs.ToArray());
             Init.pictureBox.Image = Init.bitmap;
@@ -34,11 +35,17 @@ namespace Figure
 
         public override void MoveTo(int x, int y)
         {
-            if (OutOfBoundsCheck(x, y)) return;
+            if (OutOfBoundsCheck(x, y))
+            {
+                Messages.Add("You enter invalid values. Try one more time)");
+                return;
+            }
             for (var i = 0; i < PointFs.Count; i++)
             {
-                (PointFs.ToArray())[i].X += x;
-                (PointFs.ToArray())[i].Y += y;
+                var point = PointFs[i];
+                point.X += x;
+                point.Y += y;
+                PointFs[i] = point;
             }
             DeleteF(this, Init.pictureBox, false);
             this.Draw();

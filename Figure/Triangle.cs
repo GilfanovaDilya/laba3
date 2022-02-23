@@ -10,8 +10,7 @@ namespace Figure
 
         public Triangle() : base()
         {
-            name = "Triangle " + numberOfTriangle;
-            numberOfTriangle++;
+
         }
 
         public Triangle(List<PointF> triFs) : base(triFs)

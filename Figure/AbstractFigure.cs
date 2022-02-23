@@ -17,7 +17,7 @@ namespace Figure
 
     public abstract class Figure
     {
-
+        public static List<string> Messages { get; set; } = new List<string>();
         public double x { get; set; }
         public double y { get; set; }
         public double w { get; set; }
@@ -62,8 +62,9 @@ namespace Figure
 
         public bool OutOfBoundsCheck(int x, int y)
         {
-            return !((this.x + x < 0) || (this.y + y < 0) || (this.x + this.w + x > Init.pictureBox.Width) ||
-                     (this.y + this.h + y > Init.pictureBox.Height));
+            return ((this.x + x < 0) || (this.y + y < 0) || (this.x + this.w + x > Init.pictureBox.Width) ||
+                     (this.y + this.h + y > Init.pictureBox.Height)) || (this.w < 0) ||
+                     (this.h < 0);
         }
     }
 }

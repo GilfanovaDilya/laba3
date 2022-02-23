@@ -24,6 +24,11 @@ namespace Figure
         }
         public override void Draw()
         {
+            if (OutOfBoundsCheck(0,0))
+            {
+                Messages.Add("You enter invalid values. Try one more time)");
+                return;
+            }
             var graphic = Graphics.FromImage(Init.bitmap);
             graphic.DrawEllipse(Init.pen, (float)x, (float)y, (float)w, (float)h);
             Init.pictureBox.Image = Init.bitmap;
@@ -31,7 +36,11 @@ namespace Figure
 
         public override void MoveTo(int x, int y)
         {
-            if (!OutOfBoundsCheck(x, y)) return;
+            if (OutOfBoundsCheck(x, y))
+            {
+                Messages.Add("You enter invalid values. Try one more time)");
+                return;
+            }
             this.x += x;
             this.y += y;
             DeleteF(this, Init.pictureBox, false);

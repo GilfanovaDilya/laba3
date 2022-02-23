@@ -25,6 +25,11 @@ namespace Figure
 
         public override void Draw()
         {
+            if (OutOfBoundsCheck(0,0))
+            {
+                Messages.Add("You enter invalid values. Try one more time)");
+                return;
+            }
             var graphic = Graphics.FromImage(Init.bitmap);
             graphic.DrawRectangle(Init.pen, (float)x, (float)y, (float)w, (float)h);
             Init.pictureBox.Image = Init.bitmap;
@@ -32,7 +37,11 @@ namespace Figure
 
         public override void MoveTo(int x, int y)
         {
-            if (!OutOfBoundsCheck(x, y)) return;
+            if (OutOfBoundsCheck(x, y))
+            {
+                Messages.Add("You enter invalid values. Try one more time)");
+                return;
+            }
             this.x += x;
             this.y += y;
             DeleteF(this, Init.pictureBox, false);
@@ -41,11 +50,15 @@ namespace Figure
 
         public void ChangeLineDim(int _w, int _h)
         {
-            if ((w + _w < 0) || (h + _h < 0) || (x + w + _w) < Init.pictureBox.Width || (y + h + _h) < Init.pictureBox.Height) return;
+            if ((w + _w < 0) || (h + _h < 0) || (x + w + _w) > Init.pictureBox.Width || (y + h + _h) > Init.pictureBox.Height)
+            {
+                Messages.Add("You enter invalid values. Try one more time)");
+                return;
+            }
             w += _w;
             h += _h;
             DeleteF(this, Init.pictureBox, false);
-            this.Draw();
+            Draw();
         }
     }
 }

@@ -31,11 +31,11 @@ namespace WindowsFormsLab_2_0
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Square = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.Square_W = new System.Windows.Forms.TextBox();
             this.Square_Y = new System.Windows.Forms.TextBox();
             this.Square_X = new System.Windows.Forms.TextBox();
             this.Square_C = new System.Windows.Forms.Button();
+            this.Move_B = new System.Windows.Forms.Button();
             this.Rectangle = new System.Windows.Forms.GroupBox();
             this.Rectangle_H = new System.Windows.Forms.TextBox();
             this.Rectangle_W = new System.Windows.Forms.TextBox();
@@ -68,6 +68,23 @@ namespace WindowsFormsLab_2_0
             this.Sun_Y = new System.Windows.Forms.TextBox();
             this.Sun_X = new System.Windows.Forms.TextBox();
             this.Sun_C = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Move = new System.Windows.Forms.GroupBox();
+            this.Delete = new System.Windows.Forms.GroupBox();
+            this.Move_CB = new System.Windows.Forms.ComboBox();
+            this.Move_X = new System.Windows.Forms.TextBox();
+            this.Move_Y = new System.Windows.Forms.TextBox();
+            this.Delete_CB = new System.Windows.Forms.ComboBox();
+            this.Delete_B = new System.Windows.Forms.Button();
+            this.ChangeRadius = new System.Windows.Forms.GroupBox();
+            this.ChangeRadius_R = new System.Windows.Forms.TextBox();
+            this.ChangeRadius_GB = new System.Windows.Forms.ComboBox();
+            this.ChangeRadius_B = new System.Windows.Forms.Button();
+            this.ChangeLinearDimensions_GB = new System.Windows.Forms.GroupBox();
+            this.ChangeLinearDimensions_H = new System.Windows.Forms.TextBox();
+            this.ChangeLinearDimensions_W = new System.Windows.Forms.TextBox();
+            this.ChangeLinearDimensions_CB = new System.Windows.Forms.ComboBox();
+            this.ChangeLinearDimensions_B = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.Square.SuspendLayout();
             this.Rectangle.SuspendLayout();
@@ -76,6 +93,10 @@ namespace WindowsFormsLab_2_0
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.Move.SuspendLayout();
+            this.Delete.SuspendLayout();
+            this.ChangeRadius.SuspendLayout();
+            this.ChangeLinearDimensions_GB.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -93,22 +114,12 @@ namespace WindowsFormsLab_2_0
             this.Square.Controls.Add(this.Square_Y);
             this.Square.Controls.Add(this.Square_X);
             this.Square.Controls.Add(this.Square_C);
-            this.Square.Location = new System.Drawing.Point(1195, 12);
+            this.Square.Location = new System.Drawing.Point(1451, 12);
             this.Square.Name = "Square";
             this.Square.Size = new System.Drawing.Size(247, 176);
             this.Square.TabIndex = 1;
             this.Square.TabStop = false;
             this.Square.Text = "Square";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(1466, 588);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Square_W
             // 
@@ -141,6 +152,16 @@ namespace WindowsFormsLab_2_0
             this.Square_C.UseVisualStyleBackColor = true;
             this.Square_C.Click += new System.EventHandler(this.Square_C_Click);
             // 
+            // Move_B
+            // 
+            this.Move_B.Location = new System.Drawing.Point(18, 106);
+            this.Move_B.Name = "Move_B";
+            this.Move_B.Size = new System.Drawing.Size(75, 23);
+            this.Move_B.TabIndex = 5;
+            this.Move_B.Text = "Move";
+            this.Move_B.UseVisualStyleBackColor = true;
+            this.Move_B.Click += new System.EventHandler(this.Move_B_Click);
+            // 
             // Rectangle
             // 
             this.Rectangle.Controls.Add(this.Rectangle_H);
@@ -148,7 +169,7 @@ namespace WindowsFormsLab_2_0
             this.Rectangle.Controls.Add(this.Rectangle_Y);
             this.Rectangle.Controls.Add(this.Rectangle_X);
             this.Rectangle.Controls.Add(this.Rectangle_C);
-            this.Rectangle.Location = new System.Drawing.Point(1448, 12);
+            this.Rectangle.Location = new System.Drawing.Point(1198, 12);
             this.Rectangle.Name = "Rectangle";
             this.Rectangle.Size = new System.Drawing.Size(247, 176);
             this.Rectangle.TabIndex = 6;
@@ -202,7 +223,7 @@ namespace WindowsFormsLab_2_0
             this.Ellipse.Controls.Add(this.Ellipse_C);
             this.Ellipse.Location = new System.Drawing.Point(1195, 194);
             this.Ellipse.Name = "Ellipse";
-            this.Ellipse.Size = new System.Drawing.Size(247, 174);
+            this.Ellipse.Size = new System.Drawing.Size(250, 174);
             this.Ellipse.TabIndex = 7;
             this.Ellipse.TabStop = false;
             this.Ellipse.Text = "Ellipse";
@@ -251,7 +272,7 @@ namespace WindowsFormsLab_2_0
             this.Circle.Controls.Add(this.Circle_Y);
             this.Circle.Controls.Add(this.Circle_X);
             this.Circle.Controls.Add(this.Circle_C);
-            this.Circle.Location = new System.Drawing.Point(1448, 194);
+            this.Circle.Location = new System.Drawing.Point(1451, 194);
             this.Circle.Name = "Circle";
             this.Circle.Size = new System.Drawing.Size(247, 174);
             this.Circle.TabIndex = 6;
@@ -297,7 +318,7 @@ namespace WindowsFormsLab_2_0
             this.groupBox5.Controls.Add(this.Polygon_N);
             this.groupBox5.Location = new System.Drawing.Point(1195, 374);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(247, 189);
+            this.groupBox5.Size = new System.Drawing.Size(250, 189);
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Polygon";
@@ -345,7 +366,7 @@ namespace WindowsFormsLab_2_0
             this.groupBox6.Controls.Add(this.Triangle_Y);
             this.groupBox6.Controls.Add(this.Triangle_X);
             this.groupBox6.Controls.Add(this.Triangle_Add);
-            this.groupBox6.Location = new System.Drawing.Point(1448, 374);
+            this.groupBox6.Location = new System.Drawing.Point(1451, 374);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(247, 189);
             this.groupBox6.TabIndex = 6;
@@ -433,12 +454,175 @@ namespace WindowsFormsLab_2_0
             this.Sun_C.UseVisualStyleBackColor = true;
             this.Sun_C.Click += new System.EventHandler(this.Sun_C_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1195, 765);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "label1";
+            // 
+            // Move
+            // 
+            this.Move.Controls.Add(this.Move_Y);
+            this.Move.Controls.Add(this.Move_X);
+            this.Move.Controls.Add(this.Move_CB);
+            this.Move.Controls.Add(this.Move_B);
+            this.Move.Location = new System.Drawing.Point(1448, 576);
+            this.Move.Name = "Move";
+            this.Move.Size = new System.Drawing.Size(200, 155);
+            this.Move.TabIndex = 9;
+            this.Move.TabStop = false;
+            this.Move.Text = "Move_GB";
+            this.Move.Enter += new System.EventHandler(this.Move_GB_Enter);
+            // 
+            // Delete
+            // 
+            this.Delete.Controls.Add(this.Delete_CB);
+            this.Delete.Controls.Add(this.Delete_B);
+            this.Delete.Location = new System.Drawing.Point(1448, 737);
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(200, 90);
+            this.Delete.TabIndex = 10;
+            this.Delete.TabStop = false;
+            this.Delete.Text = "Delete";
+            this.Delete.Enter += new System.EventHandler(this.Delete_Enter);
+            // 
+            // Move_CB
+            // 
+            this.Move_CB.FormattingEnabled = true;
+            this.Move_CB.Location = new System.Drawing.Point(18, 26);
+            this.Move_CB.Name = "Move_CB";
+            this.Move_CB.Size = new System.Drawing.Size(121, 21);
+            this.Move_CB.TabIndex = 6;
+            // 
+            // Move_X
+            // 
+            this.Move_X.Location = new System.Drawing.Point(18, 53);
+            this.Move_X.Name = "Move_X";
+            this.Move_X.Size = new System.Drawing.Size(100, 20);
+            this.Move_X.TabIndex = 7;
+            // 
+            // Move_Y
+            // 
+            this.Move_Y.Location = new System.Drawing.Point(18, 80);
+            this.Move_Y.Name = "Move_Y";
+            this.Move_Y.Size = new System.Drawing.Size(100, 20);
+            this.Move_Y.TabIndex = 8;
+            // 
+            // Delete_CB
+            // 
+            this.Delete_CB.FormattingEnabled = true;
+            this.Delete_CB.Location = new System.Drawing.Point(18, 25);
+            this.Delete_CB.Name = "Delete_CB";
+            this.Delete_CB.Size = new System.Drawing.Size(121, 21);
+            this.Delete_CB.TabIndex = 10;
+            // 
+            // Delete_B
+            // 
+            this.Delete_B.Location = new System.Drawing.Point(18, 52);
+            this.Delete_B.Name = "Delete_B";
+            this.Delete_B.Size = new System.Drawing.Size(75, 23);
+            this.Delete_B.TabIndex = 9;
+            this.Delete_B.Text = "Delete";
+            this.Delete_B.UseVisualStyleBackColor = true;
+            this.Delete_B.Click += new System.EventHandler(this.Delete_B_Click);
+            // 
+            // ChangeRadius
+            // 
+            this.ChangeRadius.Controls.Add(this.ChangeRadius_R);
+            this.ChangeRadius.Controls.Add(this.ChangeRadius_GB);
+            this.ChangeRadius.Controls.Add(this.ChangeRadius_B);
+            this.ChangeRadius.Location = new System.Drawing.Point(1701, 16);
+            this.ChangeRadius.Name = "ChangeRadius";
+            this.ChangeRadius.Size = new System.Drawing.Size(200, 155);
+            this.ChangeRadius.TabIndex = 10;
+            this.ChangeRadius.TabStop = false;
+            this.ChangeRadius.Text = "ChangeRadius";
+            this.ChangeRadius.Enter += new System.EventHandler(this.ChangeRadius_Enter);
+            // 
+            // ChangeRadius_R
+            // 
+            this.ChangeRadius_R.Location = new System.Drawing.Point(18, 53);
+            this.ChangeRadius_R.Name = "ChangeRadius_R";
+            this.ChangeRadius_R.Size = new System.Drawing.Size(100, 20);
+            this.ChangeRadius_R.TabIndex = 7;
+            // 
+            // ChangeRadius_GB
+            // 
+            this.ChangeRadius_GB.FormattingEnabled = true;
+            this.ChangeRadius_GB.Location = new System.Drawing.Point(18, 26);
+            this.ChangeRadius_GB.Name = "ChangeRadius_GB";
+            this.ChangeRadius_GB.Size = new System.Drawing.Size(121, 21);
+            this.ChangeRadius_GB.TabIndex = 6;
+            // 
+            // ChangeRadius_B
+            // 
+            this.ChangeRadius_B.Location = new System.Drawing.Point(18, 83);
+            this.ChangeRadius_B.Name = "ChangeRadius_B";
+            this.ChangeRadius_B.Size = new System.Drawing.Size(75, 23);
+            this.ChangeRadius_B.TabIndex = 5;
+            this.ChangeRadius_B.Text = "ChangeRadius";
+            this.ChangeRadius_B.UseVisualStyleBackColor = true;
+            this.ChangeRadius_B.Click += new System.EventHandler(this.ChangeRadius_B_Click);
+            // 
+            // ChangeLinearDimensions_GB
+            // 
+            this.ChangeLinearDimensions_GB.Controls.Add(this.ChangeLinearDimensions_H);
+            this.ChangeLinearDimensions_GB.Controls.Add(this.ChangeLinearDimensions_W);
+            this.ChangeLinearDimensions_GB.Controls.Add(this.ChangeLinearDimensions_CB);
+            this.ChangeLinearDimensions_GB.Controls.Add(this.ChangeLinearDimensions_B);
+            this.ChangeLinearDimensions_GB.Location = new System.Drawing.Point(1701, 177);
+            this.ChangeLinearDimensions_GB.Name = "ChangeLinearDimensions_GB";
+            this.ChangeLinearDimensions_GB.Size = new System.Drawing.Size(200, 155);
+            this.ChangeLinearDimensions_GB.TabIndex = 10;
+            this.ChangeLinearDimensions_GB.TabStop = false;
+            this.ChangeLinearDimensions_GB.Text = "ChangeLinearDimensions";
+            this.ChangeLinearDimensions_GB.Enter += new System.EventHandler(this.ChangeLinearDimensions_GB_Enter);
+            // 
+            // ChangeLinearDimensions_H
+            // 
+            this.ChangeLinearDimensions_H.Location = new System.Drawing.Point(18, 80);
+            this.ChangeLinearDimensions_H.Name = "ChangeLinearDimensions_H";
+            this.ChangeLinearDimensions_H.Size = new System.Drawing.Size(100, 20);
+            this.ChangeLinearDimensions_H.TabIndex = 8;
+            // 
+            // ChangeLinearDimensions_W
+            // 
+            this.ChangeLinearDimensions_W.Location = new System.Drawing.Point(18, 53);
+            this.ChangeLinearDimensions_W.Name = "ChangeLinearDimensions_W";
+            this.ChangeLinearDimensions_W.Size = new System.Drawing.Size(100, 20);
+            this.ChangeLinearDimensions_W.TabIndex = 7;
+            // 
+            // ChangeLinearDimensions_CB
+            // 
+            this.ChangeLinearDimensions_CB.FormattingEnabled = true;
+            this.ChangeLinearDimensions_CB.Location = new System.Drawing.Point(18, 26);
+            this.ChangeLinearDimensions_CB.Name = "ChangeLinearDimensions_CB";
+            this.ChangeLinearDimensions_CB.Size = new System.Drawing.Size(121, 21);
+            this.ChangeLinearDimensions_CB.TabIndex = 6;
+            // 
+            // ChangeLinearDimensions_B
+            // 
+            this.ChangeLinearDimensions_B.Location = new System.Drawing.Point(18, 106);
+            this.ChangeLinearDimensions_B.Name = "ChangeLinearDimensions_B";
+            this.ChangeLinearDimensions_B.Size = new System.Drawing.Size(75, 23);
+            this.ChangeLinearDimensions_B.TabIndex = 5;
+            this.ChangeLinearDimensions_B.Text = "ChangeLinearDimensions";
+            this.ChangeLinearDimensions_B.UseVisualStyleBackColor = true;
+            this.ChangeLinearDimensions_B.Click += new System.EventHandler(this.ChangeLinearDimensions_B_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1775, 904);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(1955, 904);
+            this.Controls.Add(this.ChangeLinearDimensions_GB);
+            this.Controls.Add(this.ChangeRadius);
+            this.Controls.Add(this.Delete);
+            this.Controls.Add(this.Move);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
@@ -464,7 +648,15 @@ namespace WindowsFormsLab_2_0
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.Move.ResumeLayout(false);
+            this.Move.PerformLayout();
+            this.Delete.ResumeLayout(false);
+            this.ChangeRadius.ResumeLayout(false);
+            this.ChangeRadius.PerformLayout();
+            this.ChangeLinearDimensions_GB.ResumeLayout(false);
+            this.ChangeLinearDimensions_GB.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -476,7 +668,7 @@ namespace WindowsFormsLab_2_0
         private System.Windows.Forms.TextBox Square_Y;
         private System.Windows.Forms.TextBox Square_X;
         private System.Windows.Forms.Button Square_C;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Move_B;
         private System.Windows.Forms.GroupBox Rectangle;
         private System.Windows.Forms.TextBox Rectangle_W;
         private System.Windows.Forms.TextBox Rectangle_Y;
@@ -509,6 +701,23 @@ namespace WindowsFormsLab_2_0
         private System.Windows.Forms.Button Sun_C;
         private System.Windows.Forms.TextBox Rectangle_H;
         private System.Windows.Forms.TextBox Ellipse_H;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox Move;
+        private System.Windows.Forms.TextBox Move_Y;
+        private System.Windows.Forms.TextBox Move_X;
+        private System.Windows.Forms.ComboBox Move_CB;
+        private System.Windows.Forms.GroupBox Delete;
+        private System.Windows.Forms.ComboBox Delete_CB;
+        private System.Windows.Forms.Button Delete_B;
+        private System.Windows.Forms.GroupBox ChangeRadius;
+        private System.Windows.Forms.TextBox ChangeRadius_R;
+        private System.Windows.Forms.ComboBox ChangeRadius_GB;
+        private System.Windows.Forms.Button ChangeRadius_B;
+        private System.Windows.Forms.GroupBox ChangeLinearDimensions_GB;
+        private System.Windows.Forms.TextBox ChangeLinearDimensions_H;
+        private System.Windows.Forms.TextBox ChangeLinearDimensions_W;
+        private System.Windows.Forms.ComboBox ChangeLinearDimensions_CB;
+        private System.Windows.Forms.Button ChangeLinearDimensions_B;
     }
 }
 

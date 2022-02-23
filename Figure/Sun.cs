@@ -10,8 +10,8 @@ namespace Figure
         private double _x { get; set; }
         private double _y { get; set; }
         private double _w { get; set; }
-        public Circle centerCircle;
-        public Triangle[] Triangles;
+        public Circle centerCircle = new Circle();
+        public Triangle[] Triangles = new[] { new Triangle() };
 
         public Sun()
         {
@@ -27,10 +27,9 @@ namespace Figure
             _x = x;
             _y = y;
             _w = w;
-            if (OutOfBoundsCheck(0, 0))
+            if (OutOfBoundsCheck(0,0))
             {
-                centerCircle = new Circle();
-                Triangles = new[] {new Triangle()};
+                Messages.Add("You enter invalid values. Try one more time)");
                 return;
             }
 
@@ -112,13 +111,15 @@ namespace Figure
             {
                 for (var i = 0; i < triangle.PointFs.Count; i++)
                 {
-                    triangle.PointFs.ToArray()[i].X += x;
-                    triangle.PointFs.ToArray()[i].Y += y;
+                    var triangl = triangle.PointFs[i];
+                    triangl.X += x;
+                    triangl.Y += y;
+                    triangle.PointFs[i] = triangl;
                 }
             }
 
             DeleteF(this, Init.pictureBox, false);
-            this.Draw();
+            Draw();
         }
 
         public Triangle CreateTriangle(double X1, double Y1, double X2, double Y2, double X3, double Y3)

@@ -16,8 +16,13 @@ namespace Figure
 
         public void ChangeRadius(int _w)
         {
-            if ((w + _w < 0) || (x + w + _w) > Init.pictureBox.Width || (y + w + _w) > Init.pictureBox.Height) return;
+            if ((w + _w < 0) || (x + w + _w) > Init.pictureBox.Width || (y + w + _w) > Init.pictureBox.Height)
+            {
+                Messages.Add("You enter invalid values. Try one more time)");
+                return;
+            }
             w += _w;
+            h += _w;
             DeleteF(this, Init.pictureBox, false);
             Draw();
         }
