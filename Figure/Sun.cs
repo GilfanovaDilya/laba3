@@ -11,7 +11,7 @@ namespace Figure
         private double _y { get; set; }
         private double _w { get; set; }
         public Circle centerCircle = new Circle();
-        public Triangle[] Triangles = new[] { new Triangle() };
+        public Triangle[] Triangles = { new Triangle() };
 
         public Sun()
         {
@@ -33,7 +33,7 @@ namespace Figure
                 return;
             }
 
-            centerCircle = new Circle(_x - 0.7 * _w / 2.0, _y - 0.7 * _w / 2.0, 0.7 * _w);
+            centerCircle = new Circle((float) (_x - 0.7 * _w / 2.0), (float) (_y - 0.7 * _w / 2.0), (float) (0.7 * _w), false);
             Triangles = new[]
             {
                 CreateTriangle(-0.5, 0, -0.37, 0.26 / 3.0, -0.37, -0.26 / 3.0),
@@ -105,16 +105,21 @@ namespace Figure
             if (OutOfBoundsCheck(x, y)) return;
             _x += x;
             _y += y;
-            centerCircle.x += x;
-            centerCircle.y += y;
+            for (var i = 0; i < centerCircle.Points.Count; i++)
+            {
+                var centerCirclePoint = centerCircle.Points[i];
+                centerCirclePoint.X += x;
+                centerCirclePoint.Y += y;
+                centerCircle.Points[i] = centerCirclePoint;
+            }
             foreach (var triangle in Triangles)
             {
-                for (var i = 0; i < triangle.PointFs.Count; i++)
+                for (var i = 0; i < triangle.Points.Count; i++)
                 {
-                    var triangl = triangle.PointFs[i];
+                    var triangl = triangle.Points[i];
                     triangl.X += x;
                     triangl.Y += y;
-                    triangle.PointFs[i] = triangl;
+                    triangle.Points[i] = triangl;
                 }
             }
 
@@ -129,7 +134,7 @@ namespace Figure
                 new PointF((float) (_x + X1 * _w), (float) (_y + Y1 * _w)),
                 new PointF((float) (_x + X2 * _w), (float) (_y + Y2 * _w)),
                 new PointF((float) (_x + X3 * _w), (float) (_y + Y3 * _w))
-            });
+            }, false);
         }
 
         private new bool OutOfBoundsCheck(int x, int y)

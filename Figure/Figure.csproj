@@ -46,7 +46,6 @@
     <Compile Include="AbstractFigure.cs" />
     <Compile Include="Circle.cs" />
     <Compile Include="Ellipse.cs" />
-    <Compile Include="Point.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rectangle.cs" />

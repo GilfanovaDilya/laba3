@@ -27,8 +27,8 @@ namespace WindowsFormsLab_2_0
 
         private void Rectangle_C_Click(object sender, EventArgs e)
         {
-            var rectangle = new Figure.Rectangle(double.Parse(Rectangle_X.Text), double.Parse(Rectangle_Y.Text),
-                double.Parse(Rectangle_W.Text), double.Parse(Rectangle_H.Text));
+            var rectangle = new Figure.Rectangle(float.Parse(Rectangle_X.Text), float.Parse(Rectangle_Y.Text),
+                float.Parse(Rectangle_W.Text), float.Parse(Rectangle_H.Text));
             rectangle.Draw();
             ShapeContainer.AddFigure(rectangle);
             Message();
@@ -36,8 +36,8 @@ namespace WindowsFormsLab_2_0
 
         private void Square_C_Click(object sender, EventArgs e)
         {
-            var square = new Square(double.Parse(Square_X.Text), double.Parse(Square_Y.Text),
-                double.Parse(Square_W.Text));
+            var square = new Square(float.Parse(Square_X.Text), float.Parse(Square_Y.Text),
+                float.Parse(Square_W.Text));
             square.Draw();
             ShapeContainer.AddFigure(square);
             Message();
@@ -76,8 +76,8 @@ namespace WindowsFormsLab_2_0
 
         private void Ellipse_C_Click(object sender, EventArgs e)
         {
-            var ellipse = new Figure.Ellipse(double.Parse(Ellipse_X.Text), double.Parse(Ellipse_Y.Text),
-                double.Parse(Ellipse_W.Text), double.Parse(Ellipse_H.Text));
+            var ellipse = new Figure.Ellipse(float.Parse(Ellipse_X.Text), float.Parse(Ellipse_Y.Text),
+                float.Parse(Ellipse_W.Text), float.Parse(Ellipse_H.Text));
             ellipse.Draw();
             ShapeContainer.AddFigure(ellipse);
             Message();
@@ -85,8 +85,8 @@ namespace WindowsFormsLab_2_0
 
         private void Circle_C_Click(object sender, EventArgs e)
         {
-            var circle = new Circle(double.Parse(Circle_X.Text), double.Parse(Circle_Y.Text),
-                double.Parse(Circle_W.Text));
+            var circle = new Circle(float.Parse(Circle_X.Text), float.Parse(Circle_Y.Text),
+                float.Parse(Circle_W.Text));
             circle.Draw();
             ShapeContainer.AddFigure(circle);
             Message();
@@ -113,7 +113,7 @@ namespace WindowsFormsLab_2_0
             foreach (var figure in ShapeContainer.figures.Where(
                          figure => figure.name == ChangeRadius_GB.SelectedItem.ToString()))
             {
-                ((Circle) figure).ChangeRadius(int.Parse(ChangeRadius_R.Text));
+                ((Circle) figure).ChangeLineDim(int.Parse(ChangeRadius_R.Text));
                 ChangeRadius_GB.SelectedIndex = -1;
                 ChangeRadius_GB.Text = "";
                 ChangeRadius_R.Text = "";

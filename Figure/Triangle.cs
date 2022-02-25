@@ -8,13 +8,16 @@ namespace Figure
     {
         public static int numberOfTriangle = 0;
 
-        public Triangle() : base()
+        public Triangle(bool single = true) : base(false)
         {
-
+            if (!single) return;
+            name = "Triangle " + numberOfTriangle;
+            numberOfTriangle++;
         }
 
-        public Triangle(List<PointF> triFs) : base(triFs)
+        public Triangle(List<PointF> triFs, bool single = true) : base(triFs, false)
         {
+            if (!single) return;
             name = "Triangle " + numberOfTriangle;
             numberOfTriangle++;
         }

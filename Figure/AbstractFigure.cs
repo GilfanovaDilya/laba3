@@ -18,13 +18,31 @@ namespace Figure
     public abstract class Figure
     {
         public static List<string> Messages { get; set; } = new List<string>();
-        public double x { get; set; }
-        public double y { get; set; }
-        public double w { get; set; }
-        public double h { get; set; }
+        public List<PointF> Points { get; set; } = new List<PointF>();
+        //public double x { get; set; }
+        //public double y { get; set; }
+        //public double w { get; set; }
+        //public double h { get; set; }
         public string name { get; set; }
         public abstract void Draw();
-        public abstract void MoveTo(int x, int y);
+
+        public virtual void MoveTo(int x, int y)
+        {
+            if (OutOfBoundsCheck(x, y))
+            {
+                Messages.Add("You enter invalid values. Try one more time)");
+                return;
+            }
+            for (var i = 0; i < Points.Count; i++)
+            {
+                var point = Points[i];
+                point.X += x;
+                point.Y += y;
+                Points[i] = point;
+            }
+            DeleteF(this, Init.pictureBox, false);
+            this.Draw();
+        }
 
         public void DeleteF(Figure deletedFigure, PictureBox pictureBox, bool flag = true)
         {
@@ -60,11 +78,26 @@ namespace Figure
             g.Clear(Color.White);
         }
 
+        public void ChangeLineDim(int _w, int _h = default)
+        {
+            if (_h == default) _h = _w;
+            if ((Points[1].X + _w < Points[0].X) || (Points[1].Y + _h < Points[0].Y) || (Points[1].X + _w) > Init.pictureBox.Width || (Points[1].Y + _h) > Init.pictureBox.Height)
+            {
+                Messages.Add("You enter invalid values. Try one more time)");
+                return;
+            }
+
+            var point = Points[1];
+            point.X += _w;
+            point.Y += _h;
+            Points[1] = point;
+            DeleteF(this, Init.pictureBox, false);
+            Draw();
+        }
+
         public bool OutOfBoundsCheck(int x, int y)
         {
-            return ((this.x + x < 0) || (this.y + y < 0) || (this.x + this.w + x > Init.pictureBox.Width) ||
-                     (this.y + this.h + y > Init.pictureBox.Height)) || (this.w < 0) ||
-                     (this.h < 0);
+            return Points.Any(point => (point.X + x < 0) || (point.Y + y < 0) || (point.X + x > Init.pictureBox.Width) || (point.Y + y > Init.pictureBox.Height));
         }
     }
 }

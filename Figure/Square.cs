@@ -6,7 +6,7 @@
         public Square()
         { }
 
-        public Square(double x, double y, double w) : base(x, y, w, w)
+        public Square(float x, float y, float w) : base(x, y, w, w)
         {
             name = "Square " + numberOfSquare;
             numberOfSquare++;

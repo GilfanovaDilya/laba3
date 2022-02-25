@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace Figure
 {
@@ -7,18 +8,12 @@ namespace Figure
         public static int numberOfEllipse = 0;
         public Ellipse()
         {
-            x = 0;
-            y = 0;
-            w = 0;
-            h = 0;
+            Points = new List<PointF>();
         }
 
-        public Ellipse(double x, double y, double w, double h)
+        public Ellipse(float x, float y, float w, float h)
         {
-            this.x = x;
-            this.y = y;
-            this.w = w;
-            this.h = h;
+            Points = new List<PointF> { new PointF(x, y), new PointF((x + w), (y + h)) };
             name = "Ellipse " + numberOfEllipse;
             numberOfEllipse++;
         }
@@ -30,21 +25,21 @@ namespace Figure
                 return;
             }
             var graphic = Graphics.FromImage(Init.bitmap);
-            graphic.DrawEllipse(Init.pen, (float)x, (float)y, (float)w, (float)h);
+            graphic.DrawEllipse(Init.pen, new System.Drawing.Rectangle(Point.Round(Points[0]), Size.Round(new SizeF(Points[1] - new SizeF(Points[0])))));
             Init.pictureBox.Image = Init.bitmap;
         }
 
-        public override void MoveTo(int x, int y)
-        {
-            if (OutOfBoundsCheck(x, y))
-            {
-                Messages.Add("You enter invalid values. Try one more time)");
-                return;
-            }
-            this.x += x;
-            this.y += y;
-            DeleteF(this, Init.pictureBox, false);
-            this.Draw();
-        }
+        //public override void MoveTo(int x, int y)
+        //{
+        //    if (OutOfBoundsCheck(x, y))
+        //    {
+        //        Messages.Add("You enter invalid values. Try one more time)");
+        //        return;
+        //    }
+        //    this.x += x;
+        //    this.y += y;
+        //    DeleteF(this, Init.pictureBox, false);
+        //    this.Draw();
+        //}
     }
 }
