@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace Figure
@@ -11,10 +12,11 @@ namespace Figure
             Points = new List<PointF>();
         }
 
-        public Rectangle(float x, float y, float w, float h)
+        public Rectangle(float[] coordinatesF)
         {
-            Points = new List<PointF> {new PointF(x, y), new PointF((x + w), (y + h))};
-            name = "Rectangle " + numberOfRectangle;
+            Points = new List<PointF> {new PointF(coordinatesF[0], coordinatesF[1]), new PointF((coordinatesF[0] + coordinatesF[2]), (coordinatesF[1] +
+                (coordinatesF.Length == 3 ? coordinatesF[2] : coordinatesF[3])))};
+            Name = "Rectangle " + numberOfRectangle;
             numberOfRectangle++;
         }
 
@@ -22,41 +24,11 @@ namespace Figure
         {
             if (OutOfBoundsCheck(0,0))
             {
-                Messages.Add("You enter invalid values. Try one more time)");
-                return;
+                throw new Exception("Your enter invalid values)");
             }
             var graphic = Graphics.FromImage(Init.bitmap);
-            graphic.DrawRectangle(Init.pen,new System.Drawing.Rectangle(Point.Round(Points[0]), Size.Round(new SizeF(Points[1] - new SizeF(Points[0])))));
+            graphic.DrawRectangle(new Pen(color, weight), new System.Drawing.Rectangle(Point.Round(Points[0]), Size.Round(new SizeF(Points[1] - new SizeF(Points[0])))));
             Init.pictureBox.Image = Init.bitmap;
         }
-
-        //public override void MoveTo(int x, int y)
-        //{
-        //    if (OutOfBoundsCheck(x, y))
-        //    {
-        //        Messages.Add("You enter invalid values. Try one more time)");
-        //        return;
-        //    }
-        //    this.x += x;
-        //    this.y += y;
-        //    DeleteF(this, Init.pictureBox, false);
-        //    this.Draw();
-        //}
-
-        //public void ChangeLineDim(int _w, int _h)
-        //{
-        //    if ((Points[1].X + _w < Points[0].X) || (Points[1].Y + _h < Points[0].Y) || (Points[1].X + _w) > Init.pictureBox.Width || (Points[1].Y + _h) > Init.pictureBox.Height)
-        //    {
-        //        Messages.Add("You enter invalid values. Try one more time)");
-        //        return;
-        //    }
-
-        //    var point = Points[1];
-        //    point.X += _w;
-        //    point.Y += _h;
-        //    Points[1] = point;
-        //    DeleteF(this, Init.pictureBox, false);
-        //    Draw();
-        //}
     }
 }

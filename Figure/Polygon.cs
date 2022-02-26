@@ -12,7 +12,7 @@ namespace Figure
         {
             Points = new List<PointF>{};
             if (!single) return;
-            name = "Polygon " + numberOfPolygon;
+            Name = "Polygon " + numberOfPolygon;
             numberOfPolygon++;
         }
 
@@ -20,40 +20,21 @@ namespace Figure
         {
             Points = points;
             if (!single) return;
-            name = "Polygon " + numberOfPolygon;
+            Name = "Polygon " + numberOfPolygon;
             numberOfPolygon++;
         }
         public override void Draw()
         {
-            if (name != null && Points.Count < (name.StartsWith("Triangle") ? 3 : 2)) return;
+            if (Name != null && Points.Count < (Name.StartsWith("Triangle") ? 3 : 2)) return;
             if (OutOfBoundsCheck(0,0))
             {
                 Messages.Add("You enter invalid values. Try one more time)");
                 return;
             }
             var graphic = Graphics.FromImage(Init.bitmap);
-            graphic.DrawPolygon(Init.pen, Points.ToArray());
+            graphic.DrawPolygon(new Pen(color, weight), Points.ToArray());
             Init.pictureBox.Image = Init.bitmap;
         }
-
-        //public override void MoveTo(int x, int y)
-        //{
-        //    if (OutOfBoundsCheck(x, y))
-        //    {
-        //        Messages.Add("You enter invalid values. Try one more time)");
-        //        return;
-        //    }
-        //    for (var i = 0; i < Points.Count; i++)
-        //    {
-        //        var point = Points[i];
-        //        point.X += x;
-        //        point.Y += y;
-        //        Points[i] = point;
-        //    }
-        //    DeleteF(this, Init.pictureBox, false);
-        //    this.Draw();
-        //}
-
         public void AddDot(PointF _point)
         {
             Points.Add(_point);

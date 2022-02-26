@@ -20,35 +20,53 @@ namespace WindowsFormsLab_2_0
                 Bitmap(pictureBox1.ClientSize.Width,
                     pictureBox1.ClientSize.Height);
             Init.pictureBox = pictureBox1;
-            Init.pen = new Pen(Color.Black, 2);
+            Init.pen = new Pen(Init.color, Init.weight);
+            ChangeColor_tb.BackColor = Init.color;
+            ChangeWeight_tb.Text = Init.weight.ToString();
+            colorDialog1.FullOpen = true;
+            colorDialog1.Color = Init.color;
         }
 
 
 
         private void Rectangle_C_Click(object sender, EventArgs e)
         {
-            var rectangle = new Figure.Rectangle(float.Parse(Rectangle_X.Text), float.Parse(Rectangle_Y.Text),
-                float.Parse(Rectangle_W.Text), float.Parse(Rectangle_H.Text));
-            rectangle.Draw();
-            ShapeContainer.AddFigure(rectangle);
-            Message();
+            try
+            {
+                var rectangle = new Figure.Rectangle(Figure.Figure.ErrorClearParse(new string[]{Rectangle_X.Text, Rectangle_Y.Text,
+                    Rectangle_W.Text, Rectangle_H.Text}));
+                rectangle.Draw();
+                ShapeContainer.AddFigure(rectangle);
+            }
+            catch (Exception exception)
+            {
+                Figure.Figure.Messages.Add(exception.Message);
+                Message();
+            }
         }
 
         private void Square_C_Click(object sender, EventArgs e)
         {
-            var square = new Square(float.Parse(Square_X.Text), float.Parse(Square_Y.Text),
-                float.Parse(Square_W.Text));
-            square.Draw();
-            ShapeContainer.AddFigure(square);
-            Message();
+            try
+            {
+                var square = new Square(Figure.Figure.ErrorClearParse(new string[]{Square_X.Text, Square_Y.Text,
+                    Square_W.Text}));
+                square.Draw();
+                ShapeContainer.AddFigure(square);
+            }
+            catch (Exception exception)
+            {
+                Figure.Figure.Messages.Add(exception.Message);
+                Message();
+            }
         }
 
         private void ChangeLinearDimensions_GB_Enter(object sender, EventArgs e)
         {
             ChangeLinearDimensions_CB.Items.Clear();
-            foreach (var figure in ShapeContainer.figures.Where(figure => figure.name.StartsWith("Rectangle") || figure.name.StartsWith("Square")))
+            foreach (var figure in ShapeContainer.figures.Where(figure => figure.Name.StartsWith("Rectangle") || figure.Name.StartsWith("Square")))
             {
-                ChangeLinearDimensions_CB.Items.Add(figure.name);
+                ChangeLinearDimensions_CB.Items.Add(figure.Name);
             }
         }
 
@@ -61,43 +79,64 @@ namespace WindowsFormsLab_2_0
                 return;
             }
 
-            foreach (var figure in ShapeContainer.figures.Where(
-                         figure => figure.name == ChangeLinearDimensions_CB.SelectedItem.ToString()))
+            try
             {
-                ((Figure.Rectangle) figure).ChangeLineDim(int.Parse(ChangeLinearDimensions_W.Text), int.Parse(ChangeLinearDimensions_H.Text));
-                ChangeLinearDimensions_CB.SelectedIndex = -1;
-                ChangeLinearDimensions_CB.Text = "";
-                ChangeLinearDimensions_W.Text = "";
-                ChangeLinearDimensions_H.Text = "";
-                return;
+                foreach (var figure in ShapeContainer.figures.Where(
+                             figure => figure.Name == ChangeLinearDimensions_CB.SelectedItem.ToString()))
+                {
+                    ((Figure.Rectangle)figure).ChangeLineDim(Figure.Figure.ErrorClearParse(new string[] {ChangeLinearDimensions_W.Text, ChangeLinearDimensions_H.Text}));
+                    ChangeRadius_GB.SelectedIndex = -1;
+                    ChangeRadius_GB.Text = "";
+                    ChangeRadius_R.Text = "";
+                    return;
+                }
+                ChangeRadius_GB.SelectedIndex = -1;
             }
-            ChangeLinearDimensions_CB.SelectedIndex = -1;
+            catch (Exception exception)
+            {
+                Figure.Figure.Messages.Add(exception.Message);
+                Message();
+            }
         }
 
         private void Ellipse_C_Click(object sender, EventArgs e)
         {
-            var ellipse = new Figure.Ellipse(float.Parse(Ellipse_X.Text), float.Parse(Ellipse_Y.Text),
-                float.Parse(Ellipse_W.Text), float.Parse(Ellipse_H.Text));
-            ellipse.Draw();
-            ShapeContainer.AddFigure(ellipse);
-            Message();
+            try
+            {
+                var ellipse = new Ellipse(Figure.Figure.ErrorClearParse(new string[]{Ellipse_X.Text, Ellipse_Y.Text,
+                    Ellipse_W.Text, Ellipse_H.Text}));
+                ellipse.Draw();
+                ShapeContainer.AddFigure(ellipse);
+            }
+            catch (Exception exception)
+            {
+                Figure.Figure.Messages.Add(exception.Message);
+                Message();
+            }
         }
 
         private void Circle_C_Click(object sender, EventArgs e)
         {
-            var circle = new Circle(float.Parse(Circle_X.Text), float.Parse(Circle_Y.Text),
-                float.Parse(Circle_W.Text));
-            circle.Draw();
-            ShapeContainer.AddFigure(circle);
-            Message();
+            try
+            {
+                var circle = new Circle(Figure.Figure.ErrorClearParse(new string[]{Circle_X.Text, Circle_Y.Text,
+                    Circle_W.Text}));
+                circle.Draw();
+                ShapeContainer.AddFigure(circle);
+            }
+            catch (Exception exception)
+            {
+                Figure.Figure.Messages.Add(exception.Message);
+                Message();
+            }
         }
 
         private void ChangeRadius_Enter(object sender, EventArgs e)
         {
             ChangeRadius_GB.Items.Clear();
-            foreach (var figure in ShapeContainer.figures.Where(figure => figure.name.StartsWith("Circle")))
+            foreach (var figure in ShapeContainer.figures.Where(figure => figure.Name.StartsWith("Circle")))
             {
-                ChangeRadius_GB.Items.Add(figure.name);
+                ChangeRadius_GB.Items.Add(figure.Name);
             }
         }
 
@@ -109,26 +148,40 @@ namespace WindowsFormsLab_2_0
                 Message();
                 return;
             }
-
-            foreach (var figure in ShapeContainer.figures.Where(
-                         figure => figure.name == ChangeRadius_GB.SelectedItem.ToString()))
+            try
             {
-                ((Circle) figure).ChangeLineDim(int.Parse(ChangeRadius_R.Text));
+                foreach (var figure in ShapeContainer.figures.Where(
+                             figure => figure.Name == ChangeRadius_GB.SelectedItem.ToString()))
+                {
+                    ((Circle)figure).ChangeLineDim(Figure.Figure.ErrorClearParse(new string[] { ChangeRadius_R.Text }));
+                    ChangeRadius_GB.SelectedIndex = -1;
+                    ChangeRadius_GB.Text = "";
+                    ChangeRadius_R.Text = "";
+                    return;
+                }
                 ChangeRadius_GB.SelectedIndex = -1;
-                ChangeRadius_GB.Text = "";
-                ChangeRadius_R.Text = "";
-                return;
             }
-            ChangeRadius_GB.SelectedIndex = -1;
+            catch (Exception exception)
+            {
+                Figure.Figure.Messages.Add(exception.Message);
+                Message();
+            }
         }
 
         private void Sun_C_Click(object sender, EventArgs e)
         {
-            var sun = new Sun(double.Parse(Sun_X.Text), double.Parse(Sun_Y.Text),
-                double.Parse(Sun_W.Text));
-            sun.Draw();
-            ShapeContainer.AddFigure(sun);
-            Message();
+            try
+            {
+                var sun = new Sun(Figure.Figure.ErrorClearParse(new string[]{Sun_X.Text, Sun_Y.Text,
+                    Sun_W.Text}));
+                sun.Draw();
+                ShapeContainer.AddFigure(sun);
+            }
+            catch (Exception exception)
+            {
+                Figure.Figure.Messages.Add(exception.Message);
+                Message();
+            }
         }
 
         private void Polygon_N_Click(object sender, EventArgs e)
@@ -144,11 +197,27 @@ namespace WindowsFormsLab_2_0
 
         private void Polygon_Add_Click(object sender, EventArgs e)
         {
-            var polygon = ShapeContainer.figures.Last();
-            ((Polygon) polygon).AddDot(new PointF(float.Parse(Polygon_X.Text), float.Parse(Polygon_Y.Text)));
-            Polygon_X.Text = "";
-            Polygon_Y.Text = "";
+            try
+            {
+                var polygon = ShapeContainer.figures.Last();
+                var coord = Figure.Figure.ErrorClearParse(new string[] {Polygon_X.Text, Polygon_Y.Text});
+                ((Polygon) polygon).AddDot(new PointF(coord[0], coord[1]));
+                Polygon_X.Text = "";
+                Polygon_Y.Text = "";
+            }
+            catch (Exception exception)
+            {
+                Figure.Figure.Messages.Add(exception.Message);
+                Message();
+            }
             Message();
+        }
+
+        private void Polygon_Leave(object sender, EventArgs e)
+        {
+            Polygon_X.Enabled = false;
+            Polygon_Y.Enabled = false;
+            Polygon_Add.Enabled = false;
         }
 
         private void Triangle_N_Click(object sender, EventArgs e)
@@ -164,11 +233,27 @@ namespace WindowsFormsLab_2_0
 
         private void Triangle_Add_Click(object sender, EventArgs e)
         {
-            var triangle = ShapeContainer.figures.Last();
-            ((Triangle) triangle).AddDot(new PointF(float.Parse(Triangle_X.Text), float.Parse(Triangle_Y.Text)));
-            Triangle_X.Text = "";
-            Triangle_Y.Text = "";
+            try
+            {
+                var triangle = ShapeContainer.figures.Last();
+                var coord = Figure.Figure.ErrorClearParse(new[] { Triangle_X.Text, Triangle_Y.Text });
+                ((Triangle)triangle).AddDot(new PointF(coord[0], coord[1]));
+                Triangle_X.Text = "";
+                Triangle_Y.Text = "";
+            }
+            catch (Exception exception)
+            {
+                Figure.Figure.Messages.Add(exception.Message);
+                Message();
+            }
             Message();
+        }
+
+        private void Triangle_Leave(object sender, EventArgs e)
+        {
+            Triangle_X.Enabled = false;
+            Triangle_Y.Enabled = false;
+            Triangle_Add.Enabled = false;
         }
 
         private void Message()
@@ -189,7 +274,7 @@ namespace WindowsFormsLab_2_0
             Move_CB.Items.Clear();
             foreach (var figure in ShapeContainer.figures)
             {
-                Move_CB.Items.Add(figure.name);
+                Move_CB.Items.Add(figure.Name);
             }
         }
 
@@ -202,18 +287,27 @@ namespace WindowsFormsLab_2_0
                 return;
             }
 
-            foreach (var figure in ShapeContainer.figures.Where(
-                         figure => figure.name == Move_CB.SelectedItem.ToString()))
+            try
             {
-                figure.MoveTo(Convert.ToInt32(Move_X.Text), Convert.ToInt32(Move_Y.Text));
-                Move_CB.SelectedIndex = -1;
-                Move_CB.Text = "";
-                Move_X.Text = "";
-                Move_Y.Text = "";
-                return;
-            }
+                foreach (var figure in ShapeContainer.figures.Where(
+                             figure => figure.Name == Move_CB.SelectedItem.ToString()))
+                {
+                    figure.MoveTo(Figure.Figure.ErrorClearParse(new []{ Move_X.Text , Move_Y.Text }));
+                    Move_CB.SelectedIndex = -1;
+                    Move_CB.Text = "";
+                    Move_X.Text = "";
+                    Move_Y.Text = "";
+                    return;
+                }
 
-            Move_CB.SelectedIndex = -1;
+                Move_CB.SelectedIndex = -1;
+            }
+            catch (Exception exception)
+            {
+                Figure.Figure.Messages.Add(exception.Message);
+                Message();
+            }
+            
         }
 
         private void Delete_Enter(object sender, EventArgs e)
@@ -221,7 +315,7 @@ namespace WindowsFormsLab_2_0
             Delete_CB.Items.Clear();
             foreach (var figure in ShapeContainer.figures)
             {
-                Delete_CB.Items.Add(figure.name);
+                Delete_CB.Items.Add(figure.Name);
             }
         }
 
@@ -235,7 +329,7 @@ namespace WindowsFormsLab_2_0
             }
 
             foreach (var figure in ShapeContainer.figures.Where(figure =>
-                         figure.name == Delete_CB.SelectedItem.ToString()))
+                         figure.Name == Delete_CB.SelectedItem.ToString()))
             {
                 figure.DeleteF(figure, Init.pictureBox);
                 Delete_CB.SelectedIndex = -1;
@@ -246,6 +340,69 @@ namespace WindowsFormsLab_2_0
             Delete_CB.SelectedIndex = -1;
         }
 
+        private void ChangeColor_Enter(object sender, EventArgs e)
+        {
+            ChangeColor_CB.Items.Clear();
+            foreach (var figure in ShapeContainer.figures)
+            {
+                ChangeColor_CB.Items.Add(figure.Name);
+            }
+        }
 
+        private void ChangeColor_tb_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+            ChangeColor_tb.BackColor = colorDialog1.Color;
+        }
+
+        private void ChangeColor_B_Click(object sender, EventArgs e)
+        {
+            if (ChangeColor_CB.SelectedIndex == -1)
+            {
+                Init.pen = new Pen(ChangeColor_tb.BackColor, Init.weight);
+                return;
+            }
+
+            foreach (var figure in ShapeContainer.figures.Where(figure =>
+                         figure.Name == ChangeColor_CB.SelectedItem.ToString()))
+            {
+                figure.ChangeColor(figure, ChangeColor_tb.BackColor);
+                ChangeColor_CB.SelectedIndex = -1;
+                return;
+            }
+        }
+
+        private void ChangeWeight_Enter(object sender, EventArgs e)
+        {
+            ChangeWeight_CB.Items.Clear();
+            foreach (var figure in ShapeContainer.figures)
+            {
+                ChangeWeight_CB.Items.Add(figure.Name);
+            }
+        }
+
+        private void ChangeWeight_B_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(ChangeWeight_tb.Text, out var newWeight))
+            {
+                Figure.Figure.Messages.Add("Your enter invalid number. Try one more time)");
+                Message();
+                return;
+            }
+            if (ChangeWeight_CB.SelectedIndex == -1)
+            {
+                Init.pen = new Pen(Init.color, newWeight);
+                return;
+            }
+
+            foreach (var figure in ShapeContainer.figures.Where(figure =>
+                         figure.Name == ChangeWeight_CB.SelectedItem.ToString()))
+            {
+                figure.ChangeWeight(figure, newWeight);
+                ChangeWeight_CB.SelectedIndex = -1;
+                return;
+            }
+        }
     }
 }

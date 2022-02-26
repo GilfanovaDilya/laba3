@@ -13,22 +13,22 @@ namespace Figure
         public static Bitmap bitmap;
         public static PictureBox pictureBox;
         public static Pen pen;
+        public static Color color = Color.Black;
+        public static int weight = 2;
     }
 
     public abstract class Figure
     {
         public static List<string> Messages { get; set; } = new List<string>();
         public List<PointF> Points { get; set; } = new List<PointF>();
-        //public double x { get; set; }
-        //public double y { get; set; }
-        //public double w { get; set; }
-        //public double h { get; set; }
-        public string name { get; set; }
+        public Color color = Color.Black;
+        public int weight = 2;
+        public string Name { get; set; }
         public abstract void Draw();
 
-        public virtual void MoveTo(int x, int y)
+        public virtual void MoveTo(float[] fForChange)
         {
-            if (OutOfBoundsCheck(x, y))
+            if (OutOfBoundsCheck(fForChange[0], fForChange[1]))
             {
                 Messages.Add("You enter invalid values. Try one more time)");
                 return;
@@ -36,8 +36,8 @@ namespace Figure
             for (var i = 0; i < Points.Count; i++)
             {
                 var point = Points[i];
-                point.X += x;
-                point.Y += y;
+                point.X += fForChange[0];
+                point.Y += fForChange[1];
                 Points[i] = point;
             }
             DeleteF(this, Init.pictureBox, false);
@@ -46,41 +46,44 @@ namespace Figure
 
         public void DeleteF(Figure deletedFigure, PictureBox pictureBox, bool flag = true)
         {
-            if (flag == true)
+            var graphics = Graphics.FromImage(Init.bitmap);
+            ShapeContainer.figures.Remove(deletedFigure);
+            graphics.Clear(Color.White);
+            pictureBox.Image = Init.bitmap;
+            foreach (var f in ShapeContainer.figures)
             {
-                var graphics = Graphics.FromImage(Init.bitmap);
-                ShapeContainer.figures.Remove(deletedFigure);
-                this.Clear();
-                Init.pictureBox.Image = Init.bitmap;
-                foreach (var f in ShapeContainer.figures)
-                {
-                    f.Draw();
-                }
+                f.Draw();
             }
-            else
-            {
-                var graphics = Graphics.FromImage(Init.bitmap);
-                ShapeContainer.figures.Remove(deletedFigure);
-                this.Clear();
-                pictureBox.Image = Init.bitmap;
-                foreach (var f in ShapeContainer.figures)
-                {
-                    f.Draw();
-                }
-
-                ShapeContainer.figures.Add(deletedFigure);
-            }
+            if (!flag) ShapeContainer.figures.Add(deletedFigure);
         }
 
-        public void Clear()
+        public static float[] ErrorClearParse(string[] inputStrings)
         {
-            var g = Graphics.FromImage(Init.bitmap);
-            g.Clear(Color.White);
+            var result = new float[inputStrings.Length];
+            for (var i = 0; i < result.Length; i++)
+            {
+                if (!float.TryParse(inputStrings[i], out result[i]))
+                {
+                    throw new Exception("Invalid input");
+                }
+            }
+            return result;
+        }
+        public void ChangeColor(Figure figure, Color newColor)
+        {
+            figure.color = newColor;
+            figure.Draw();
+        }
+        public void ChangeWeight(Figure figure, int newWeight)
+        {
+            figure.weight = newWeight;
+            figure.Draw();
         }
 
-        public void ChangeLineDim(int _w, int _h = default)
+        public void ChangeLineDim(float[] fForChange)
         {
-            if (_h == default) _h = _w;
+            float _w = fForChange[0],
+                _h = fForChange.Length == 1 ? 0 : fForChange[1];
             if ((Points[1].X + _w < Points[0].X) || (Points[1].Y + _h < Points[0].Y) || (Points[1].X + _w) > Init.pictureBox.Width || (Points[1].Y + _h) > Init.pictureBox.Height)
             {
                 Messages.Add("You enter invalid values. Try one more time)");
@@ -95,7 +98,7 @@ namespace Figure
             Draw();
         }
 
-        public bool OutOfBoundsCheck(int x, int y)
+        public bool OutOfBoundsCheck(float x, float y)
         {
             return Points.Any(point => (point.X + x < 0) || (point.Y + y < 0) || (point.X + x > Init.pictureBox.Width) || (point.Y + y > Init.pictureBox.Height));
         }

@@ -18,22 +18,22 @@ namespace Figure
             _x = 0;
             _y = 0;
             _w = 0;
-            centerCircle = new Circle();
-            Triangles = new[] {new Triangle()};
+            centerCircle = new Circle(false);
+            Triangles = new[] {new Triangle(false)};
         }
 
-        public Sun(double x, double y, double w)
+        public Sun(float[] coordinatesF)
         {
-            _x = x;
-            _y = y;
-            _w = w;
+            _x = coordinatesF[0];
+            _y = coordinatesF[1];
+            _w = coordinatesF[2];
             if (OutOfBoundsCheck(0,0))
             {
                 Messages.Add("You enter invalid values. Try one more time)");
                 return;
             }
 
-            centerCircle = new Circle((float) (_x - 0.7 * _w / 2.0), (float) (_y - 0.7 * _w / 2.0), (float) (0.7 * _w), false);
+            centerCircle = new Circle(new float[] {(float) (_x - 0.7 * _w / 2.0), (float) (_y - 0.7 * _w / 2.0), (float) (0.7 * _w)}, false);
             Triangles = new[]
             {
                 CreateTriangle(-0.5, 0, -0.37, 0.26 / 3.0, -0.37, -0.26 / 3.0),
@@ -85,7 +85,7 @@ namespace Figure
                     Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
                     Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)))
             };
-            name = "Sun " + numberOfSun.ToString();
+            Name = "Sun " + numberOfSun.ToString();
             numberOfSun++;
         }
 
@@ -100,8 +100,10 @@ namespace Figure
             Init.pictureBox.Image = Init.bitmap;
         }
 
-        public override void MoveTo(int x, int y)
+        public override void MoveTo(float[] fForChange)
         {
+            float x = fForChange[0],
+                y = fForChange[1];
             if (OutOfBoundsCheck(x, y)) return;
             _x += x;
             _y += y;
@@ -137,7 +139,7 @@ namespace Figure
             }, false);
         }
 
-        private new bool OutOfBoundsCheck(int x, int y)
+        private new bool OutOfBoundsCheck(float x, float y)
         {
             return ((_x - 0.5 * _w + x < 0) || (_y - 0.5 * _w + y < 0) || (_x + 0.5 * _w + x > Init.pictureBox.Width) ||
                     (_y + 0.5 * _w + y > Init.pictureBox.Height));
