@@ -7,142 +7,97 @@ namespace Figure
     public class Sun : Figure
     {
         public static int numberOfSun = 0;
-        private double _x { get; set; }
-        private double _y { get; set; }
-        private double _w { get; set; }
-        public Circle centerCircle = new Circle();
-        public Triangle[] Triangles = { new Triangle() };
 
         public Sun()
         {
-            _x = 0;
-            _y = 0;
-            _w = 0;
-            centerCircle = new Circle(false);
-            Triangles = new[] {new Triangle(false)};
+            Name = "Sun " + numberOfSun.ToString();
+            numberOfSun++;
         }
 
         public Sun(float[] coordinatesF)
         {
-            _x = coordinatesF[0];
-            _y = coordinatesF[1];
-            _w = coordinatesF[2];
-            if (OutOfBoundsCheck(0,0))
+            if (OutOfBoundCheckForCreation(coordinatesF)) throw new ArgumentException("Invalid input");
+            float _x = coordinatesF[0];
+            float _y = coordinatesF[1];
+            float _w = coordinatesF[2];
+            Points.AddRange(new List<PointF>()
             {
-                Messages.Add("You enter invalid values. Try one more time)");
-                return;
-            }
-
-            centerCircle = new Circle(new float[] {(float) (_x - 0.7 * _w / 2.0), (float) (_y - 0.7 * _w / 2.0), (float) (0.7 * _w)}, false);
-            Triangles = new[]
-            {
-                CreateTriangle(-0.5, 0, -0.37, 0.26 / 3.0, -0.37, -0.26 / 3.0),
-                CreateTriangle(
-                    -1 / Math.Sqrt(2) * 0.5,
-                    -1 / Math.Sqrt(2) * 0.5,
-                    -Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
-                    -Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
-                    -Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
-                    -Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0))),
-                CreateTriangle(0, -0.5, 0.26 / 3, -0.37, -0.26 / 3, -0.37),
-                CreateTriangle(
-                    1 / Math.Sqrt(2) * 0.5,
-                    -1 / Math.Sqrt(2) * 0.5,
-                    Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
-                    -Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
-                    Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
-                    -Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0))),
-                CreateTriangle(0.5, 0, 0.37, 0.26 / 3.0, 0.37, -0.26 / 3.0),
-                CreateTriangle(
-                    1 / Math.Sqrt(2) * 0.5,
-                    1 / Math.Sqrt(2) * 0.5,
-                    Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
-                    Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
-                    Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
-                    Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0))),
-                CreateTriangle(0, 0.5, 0.26 / 3, 0.37, -0.26 / 3, 0.37),
-                CreateTriangle(
-                    -1 / Math.Sqrt(2) * 0.5,
-                    1 / Math.Sqrt(2) * 0.5,
-                    -Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
-                    Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
-                    -Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
-                    Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
-                    Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)))
-            };
+                new PointF((float) (_x - 0.7 * _w / 2.0), (float) (_y - 0.7 * _w / 2.0)),
+                new PointF((float) (_x - 0.7 * _w / 2.0) + (float) (0.7 * _w),
+                    (float) (_y - 0.7 * _w / 2.0) + (float) (0.7 * _w))
+            });
+            Points.AddRange(CreatePoints(-0.5, 0, -0.37, 0.26 / 3.0, -0.37, -0.26 / 3.0, _x, _y, _w));
+            Points.AddRange(CreatePoints(
+                -1 / Math.Sqrt(2) * 0.5,
+                -1 / Math.Sqrt(2) * 0.5,
+                -Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
+                -Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
+                -Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
+                -Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)), _x, _y, _w));
+            Points.AddRange(CreatePoints(0, -0.5, 0.26 / 3, -0.37, -0.26 / 3, -0.37, _x, _y, _w));
+            Points.AddRange(CreatePoints(
+                1 / Math.Sqrt(2) * 0.5,
+                -1 / Math.Sqrt(2) * 0.5,
+                Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
+                -Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
+                Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
+                -Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)), _x, _y, _w));
+            Points.AddRange(CreatePoints(0.5, 0, 0.37, 0.26 / 3.0, 0.37, -0.26 / 3.0, _x, _y, _w));
+            Points.AddRange(CreatePoints(
+                1 / Math.Sqrt(2) * 0.5,
+                1 / Math.Sqrt(2) * 0.5,
+                Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
+                Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
+                Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
+                Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)), _x, _y, _w));
+            Points.AddRange(CreatePoints(0, 0.5, 0.26 / 3, 0.37, -0.26 / 3, 0.37, _x, _y, _w));
+            Points.AddRange(CreatePoints(
+                -1 / Math.Sqrt(2) * 0.5,
+                1 / Math.Sqrt(2) * 0.5,
+                -Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
+                Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
+                -Math.Cos(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)),
+                Math.Sin(Math.PI / 4.0 - Math.Atan(0.26 / (3 * 0.37))) *
+                Math.Sqrt(Math.Pow(0.37, 2.0) + Math.Pow(0.26 / 3.0, 2.0)), _x, _y, _w));
             Name = "Sun " + numberOfSun.ToString();
             numberOfSun++;
         }
 
         public override void Draw()
         {
-            centerCircle.Draw();
-            foreach (var triangle in Triangles)
+            var graphic = Graphics.FromImage(Init.bitmap);
+            graphic.DrawEllipse(new Pen(color, weight), new System.Drawing.Rectangle(Point.Round(base.Points[0]), Size.Round(new SizeF(base.Points[1] - new SizeF(base.Points[0])))));
+            for (int i = 2; i < Points.Count; i += 3)
             {
-                triangle.Draw();
+                graphic.DrawPolygon(new Pen(color, weight), Points.GetRange(i, 3).ToArray());
             }
-
             Init.pictureBox.Image = Init.bitmap;
         }
 
-        public override void MoveTo(float[] fForChange)
+        public List<PointF> CreatePoints(double X1, double Y1, double X2, double Y2, double X3, double Y3, double _x,
+            double _y, double _w)
         {
-            float x = fForChange[0],
-                y = fForChange[1];
-            if (OutOfBoundsCheck(x, y)) return;
-            _x += x;
-            _y += y;
-            for (var i = 0; i < centerCircle.Points.Count; i++)
-            {
-                var centerCirclePoint = centerCircle.Points[i];
-                centerCirclePoint.X += x;
-                centerCirclePoint.Y += y;
-                centerCircle.Points[i] = centerCirclePoint;
-            }
-            foreach (var triangle in Triangles)
-            {
-                for (var i = 0; i < triangle.Points.Count; i++)
-                {
-                    var triangl = triangle.Points[i];
-                    triangl.X += x;
-                    triangl.Y += y;
-                    triangle.Points[i] = triangl;
-                }
-            }
-
-            DeleteF(this, Init.pictureBox, false);
-            Draw();
-        }
-
-        public Triangle CreateTriangle(double X1, double Y1, double X2, double Y2, double X3, double Y3)
-        {
-            return new Triangle(new List<PointF>()
+            return new List<PointF>()
             {
                 new PointF((float) (_x + X1 * _w), (float) (_y + Y1 * _w)),
                 new PointF((float) (_x + X2 * _w), (float) (_y + Y2 * _w)),
                 new PointF((float) (_x + X3 * _w), (float) (_y + Y3 * _w))
-            }, false);
-        }
-
-        private new bool OutOfBoundsCheck(float x, float y)
-        {
-            return ((_x - 0.5 * _w + x < 0) || (_y - 0.5 * _w + y < 0) || (_x + 0.5 * _w + x > Init.pictureBox.Width) ||
-                    (_y + 0.5 * _w + y > Init.pictureBox.Height));
+            };
         }
     }
 }

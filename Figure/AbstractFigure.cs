@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Figure
@@ -28,11 +26,8 @@ namespace Figure
 
         public virtual void MoveTo(float[] fForChange)
         {
-            if (OutOfBoundsCheck(fForChange[0], fForChange[1]))
-            {
-                Messages.Add("You enter invalid values. Try one more time)");
-                return;
-            }
+            if (OutOfBoundsCheck(fForChange[0], fForChange[1])) throw new Exception("Invalid input");
+
             for (var i = 0; i < Points.Count; i++)
             {
                 var point = Points[i];
@@ -40,6 +35,7 @@ namespace Figure
                 point.Y += fForChange[1];
                 Points[i] = point;
             }
+
             DeleteF(this, Init.pictureBox, false);
             this.Draw();
         }
@@ -54,6 +50,7 @@ namespace Figure
             {
                 f.Draw();
             }
+
             if (!flag) ShapeContainer.figures.Add(deletedFigure);
         }
 
@@ -64,16 +61,19 @@ namespace Figure
             {
                 if (!float.TryParse(inputStrings[i], out result[i]))
                 {
-                    throw new Exception("Invalid input");
+                    throw new ArgumentException("Invalid input");
                 }
             }
+
             return result;
         }
+
         public void ChangeColor(Figure figure, Color newColor)
         {
             figure.color = newColor;
             figure.Draw();
         }
+
         public void ChangeWeight(Figure figure, int newWeight)
         {
             figure.weight = newWeight;
@@ -83,8 +83,9 @@ namespace Figure
         public void ChangeLineDim(float[] fForChange)
         {
             float _w = fForChange[0],
-                _h = fForChange.Length == 1 ? 0 : fForChange[1];
-            if ((Points[1].X + _w < Points[0].X) || (Points[1].Y + _h < Points[0].Y) || (Points[1].X + _w) > Init.pictureBox.Width || (Points[1].Y + _h) > Init.pictureBox.Height)
+                _h = fForChange.Length == 1 ? fForChange[0] : fForChange[1];
+            if ((Points[1].X + _w < Points[0].X) || (Points[1].Y + _h < Points[0].Y) ||
+                (Points[1].X + _w) > Init.pictureBox.Width || (Points[1].Y + _h) > Init.pictureBox.Height)
             {
                 Messages.Add("You enter invalid values. Try one more time)");
                 return;
@@ -98,9 +99,20 @@ namespace Figure
             Draw();
         }
 
+        public bool OutOfBoundCheckForCreation(float[] coordFloats)
+        {
+            float x = coordFloats[0];
+            float y = coordFloats[1];
+            float w = coordFloats.Length == 2 ? 0 : coordFloats[2];
+            float h = coordFloats.Length <= 3 ? w : coordFloats[3];
+            return x < 0 || y < 0 || x + w > Init.pictureBox.Width || y + h > Init.pictureBox.Height;
+        }
+
         public bool OutOfBoundsCheck(float x, float y)
         {
-            return Points.Any(point => (point.X + x < 0) || (point.Y + y < 0) || (point.X + x > Init.pictureBox.Width) || (point.Y + y > Init.pictureBox.Height));
+            return Points.Any(point =>
+                (point.X + x < 0) || (point.Y + y < 0) || (point.X + x > Init.pictureBox.Width) ||
+                (point.Y + y > Init.pictureBox.Height));
         }
     }
 }

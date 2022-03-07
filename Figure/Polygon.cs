@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 
 namespace Figure
 {
@@ -8,35 +8,32 @@ namespace Figure
     {
         public static int numberOfPolygon = 0;
 
-        public Polygon(bool single = true)
+        public Polygon(bool isTriangle = false)
         {
-            Points = new List<PointF>{};
-            if (!single) return;
+            Points = new List<PointF> { };
+            if (isTriangle) return;
             Name = "Polygon " + numberOfPolygon;
             numberOfPolygon++;
         }
 
-        public Polygon(List<PointF> points, bool single = true)
+        public Polygon(List<PointF> points)
         {
             Points = points;
-            if (!single) return;
             Name = "Polygon " + numberOfPolygon;
             numberOfPolygon++;
         }
+
         public override void Draw()
         {
             if (Name != null && Points.Count < (Name.StartsWith("Triangle") ? 3 : 2)) return;
-            if (OutOfBoundsCheck(0,0))
-            {
-                Messages.Add("You enter invalid values. Try one more time)");
-                return;
-            }
             var graphic = Graphics.FromImage(Init.bitmap);
             graphic.DrawPolygon(new Pen(color, weight), Points.ToArray());
             Init.pictureBox.Image = Init.bitmap;
         }
+
         public void AddDot(PointF _point)
         {
+            if (OutOfBoundCheckForCreation(new[] { _point.X, _point.Y })) throw new ArgumentException("Invalid input");
             Points.Add(_point);
             DeleteF(this, Init.pictureBox, false);
             this.Draw();

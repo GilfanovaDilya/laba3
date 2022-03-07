@@ -1,21 +1,13 @@
-﻿using System.Drawing;
-
-namespace Figure
+﻿namespace Figure
 {
     public class Circle : Ellipse
     {
         public static int numberOfCircle = 0;
 
-        public Circle(bool single = true) : base(false)
-        {
-            if (!single) return;
-            Name = "Circle " + numberOfCircle;
-            numberOfCircle++;
-        }
+        public Circle() : base() { }
 
-        public Circle(float[] coordinatesF, bool single = true) : base(coordinatesF, false)
+        public Circle(float[] coordinatesF) : base(coordinatesF, true)
         {
-            if (!single) return;
             Name = "Circle " + numberOfCircle;
             numberOfCircle++;
         }
