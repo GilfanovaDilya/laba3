@@ -267,19 +267,18 @@ namespace WindowsFormsLab_2_0
             Message();
         }
 
-
-        private void Move_GB_Enter(object sender, EventArgs e)
+        private void Changes_CB_Enter(object sender, EventArgs e)
         {
-            Move_CB.Items.Clear();
+            Changes_CB.Items.Clear();
             foreach (var figure in ShapeContainer.figures)
             {
-                Move_CB.Items.Add(figure.Name);
+                Changes_CB.Items.Add(figure.Name);
             }
         }
 
         private void Move_B_Click(object sender, EventArgs e)
         {
-            if (Move_CB.SelectedIndex == -1)
+            if (Changes_CB.SelectedIndex == -1)
             {
                 Figure.Figure.Messages.Add("The figure to move is not selected. Try one more time)");
                 Message();
@@ -289,16 +288,12 @@ namespace WindowsFormsLab_2_0
             try
             {
                 foreach (var figure in ShapeContainer.figures.Where(
-                             figure => figure.Name == Move_CB.SelectedItem.ToString()))
+                             figure => figure.Name == Changes_CB.SelectedItem.ToString()))
                 {
                     figure.MoveTo(Figure.Figure.ErrorClearParse(new[] { Move_X.Text, Move_Y.Text }));
-                    Move_CB.SelectedIndex = -1;
-                    Move_CB.Text = "";
                     Move_X.Text = "";
                     Move_Y.Text = "";
                 }
-
-                Move_CB.SelectedIndex = -1;
             }
             catch (InvalidOperationException)
             {
@@ -310,18 +305,9 @@ namespace WindowsFormsLab_2_0
             Message();
         }
 
-        private void Delete_Enter(object sender, EventArgs e)
-        {
-            Delete_CB.Items.Clear();
-            foreach (var figure in ShapeContainer.figures)
-            {
-                Delete_CB.Items.Add(figure.Name);
-            }
-        }
-
         private void Delete_B_Click(object sender, EventArgs e)
         {
-            if (Delete_CB.SelectedIndex == -1)
+            if (Changes_CB.SelectedIndex == -1)
             {
                 Figure.Figure.Messages.Add("The figure to delete is not selected. Try one more time)");
                 Message();
@@ -331,11 +317,9 @@ namespace WindowsFormsLab_2_0
             try
             {
                 foreach (var figure in ShapeContainer.figures.Where(figure =>
-                             figure.Name == Delete_CB.SelectedItem.ToString()))
+                             figure.Name == Changes_CB.SelectedItem.ToString()))
                 {
                     figure.DeleteF(figure, Init.pictureBox);
-                    Delete_CB.SelectedIndex = -1;
-                    Delete_CB.Text = "";
                 }
             }
             catch (InvalidOperationException)
@@ -346,16 +330,6 @@ namespace WindowsFormsLab_2_0
                 Figure.Figure.Messages.Add(exception.Message);
             }
             Message();
-            Delete_CB.SelectedIndex = -1;
-        }
-
-        private void ChangeColor_Enter(object sender, EventArgs e)
-        {
-            ChangeColor_CB.Items.Clear();
-            foreach (var figure in ShapeContainer.figures)
-            {
-                ChangeColor_CB.Items.Add(figure.Name);
-            }
         }
 
         private void ChangeColor_tb_Click(object sender, EventArgs e)
@@ -367,28 +341,18 @@ namespace WindowsFormsLab_2_0
 
         private void ChangeColor_B_Click(object sender, EventArgs e)
         {
-            if (ChangeColor_CB.SelectedIndex == -1)
+            if (Changes_CB.SelectedIndex == -1)
             {
                 Init.pen = new Pen(ChangeColor_tb.BackColor, Init.weight);
                 return;
             }
 
             foreach (var figure in ShapeContainer.figures.Where(figure =>
-                         figure.Name == ChangeColor_CB.SelectedItem.ToString()))
+                         figure.Name == Changes_CB.SelectedItem.ToString()))
             {
                 figure.ChangeColor(figure, ChangeColor_tb.BackColor);
-                ChangeColor_CB.SelectedIndex = -1;
             }
             Message();
-        }
-
-        private void ChangeWeight_Enter(object sender, EventArgs e)
-        {
-            ChangeWeight_CB.Items.Clear();
-            foreach (var figure in ShapeContainer.figures)
-            {
-                ChangeWeight_CB.Items.Add(figure.Name);
-            }
         }
 
         private void ChangeWeight_B_Click(object sender, EventArgs e)
@@ -399,19 +363,79 @@ namespace WindowsFormsLab_2_0
                 Message();
                 return;
             }
-            if (ChangeWeight_CB.SelectedIndex == -1)
+            if (Changes_CB.SelectedIndex == -1)
             {
                 Init.pen = new Pen(Init.color, newWeight);
                 return;
             }
 
             foreach (var figure in ShapeContainer.figures.Where(figure =>
-                         figure.Name == ChangeWeight_CB.SelectedItem.ToString()))
+                         figure.Name == Changes_CB.SelectedItem.ToString()))
             {
                 figure.ChangeWeight(figure, newWeight);
-                ChangeWeight_CB.SelectedIndex = -1;
             }
             Message();
+        }
+
+        private void Rectangle_M_B_Click(object sender, EventArgs e)
+        {
+            Rectangle_GB.Location = new Point(1205, 12);
+            Rectangle_GB.Visible = true;
+            Menu_GB.Visible = false;
+        }
+
+        private void Square_M_B_Click(object sender, EventArgs e)
+        {
+            Square_GB.Location = new Point(1205, 12);
+            Square_GB.Visible = true;
+            Menu_GB.Visible = false;
+        }
+
+        private void Ellipse_M_B_Click(object sender, EventArgs e)
+        {
+            Ellipse_GB.Location = new Point(1205, 12);
+            Ellipse_GB.Visible = true;
+            Menu_GB.Visible = false;
+        }
+
+        private void Circle_M_B_Click(object sender, EventArgs e)
+        {
+            Circle_GB.Location = new Point(1205, 12);
+            Circle_GB.Visible = true;
+            Menu_GB.Visible = false;
+        }
+
+        private void Polygon_M_B_Click(object sender, EventArgs e)
+        {
+            Polygon_GB.Location = new Point(1205, 12);
+            Polygon_GB.Visible = true;
+            Menu_GB.Visible = false;
+        }
+
+        private void Triangle_M_B_Click(object sender, EventArgs e)
+        {
+            Triangle_GB.Location = new Point(1205, 12);
+            Triangle_GB.Visible = true;
+            Menu_GB.Visible = false;
+        }
+
+        private void Sun_M_B_Click(object sender, EventArgs e)
+        {
+            Sun_GB.Location = new Point(1205, 12);
+            Sun_GB.Visible = true;
+            Menu_GB.Visible = false;
+        }
+
+        private void Back_Click(object sender, EventArgs e)
+        {
+            Menu_GB.Visible = true;
+            Rectangle_GB.Visible = false;
+            Square_GB.Visible = false;
+            Ellipse_GB.Visible = false;
+            Circle_GB.Visible = false;
+            Polygon_GB.Visible = false;
+            Triangle_GB.Visible = false;
+            Sun_GB.Visible = false;
         }
     }
 }
