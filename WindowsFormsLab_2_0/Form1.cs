@@ -23,6 +23,68 @@ namespace WindowsFormsLab_2_0
             colorDialog1.Color = Init.color;
         }
 
+
+        private void Rectangle_M_B_Click(object sender, EventArgs e)
+        {
+            Rectangle_GB.Location = new Point(1205, 12);
+            Rectangle_GB.Visible = true;
+            Menu_GB.Visible = false;
+        }
+
+        private void Square_M_B_Click(object sender, EventArgs e)
+        {
+            Square_GB.Location = new Point(1205, 12);
+            Square_GB.Visible = true;
+            Menu_GB.Visible = false;
+        }
+
+        private void Ellipse_M_B_Click(object sender, EventArgs e)
+        {
+            Ellipse_GB.Location = new Point(1205, 12);
+            Ellipse_GB.Visible = true;
+            Menu_GB.Visible = false;
+        }
+
+        private void Circle_M_B_Click(object sender, EventArgs e)
+        {
+            Circle_GB.Location = new Point(1205, 12);
+            Circle_GB.Visible = true;
+            Menu_GB.Visible = false;
+        }
+
+        private void Polygon_M_B_Click(object sender, EventArgs e)
+        {
+            Polygon_GB.Location = new Point(1205, 12);
+            Polygon_GB.Visible = true;
+            Menu_GB.Visible = false;
+        }
+
+        private void Triangle_M_B_Click(object sender, EventArgs e)
+        {
+            Triangle_GB.Location = new Point(1205, 12);
+            Triangle_GB.Visible = true;
+            Menu_GB.Visible = false;
+        }
+
+        private void Sun_M_B_Click(object sender, EventArgs e)
+        {
+            Sun_GB.Location = new Point(1205, 12);
+            Sun_GB.Visible = true;
+            Menu_GB.Visible = false;
+        }
+
+        private void Back_Click(object sender, EventArgs e)
+        {
+            Menu_GB.Visible = true;
+            Rectangle_GB.Visible = false;
+            Square_GB.Visible = false;
+            Ellipse_GB.Visible = false;
+            Circle_GB.Visible = false;
+            Polygon_GB.Visible = false;
+            Triangle_GB.Visible = false;
+            Sun_GB.Visible = false;
+        }
+
         private void Message()
         {
             label1.Text = "";
@@ -179,22 +241,6 @@ namespace WindowsFormsLab_2_0
             Message();
         }
 
-        private void Sun_C_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var sun = new Sun(Figure.Figure.ErrorClearParse(new string[]{Sun_X.Text, Sun_Y.Text,
-                    Sun_W.Text}));
-                sun.Draw();
-                ShapeContainer.AddFigure(sun);
-            }
-            catch (Exception exception)
-            {
-                Figure.Figure.Messages.Add(exception.Message);
-            }
-            Message();
-        }
-
         private void Polygon_N_Click(object sender, EventArgs e)
         {
             Polygon_X.Text = "";
@@ -264,6 +310,22 @@ namespace WindowsFormsLab_2_0
             Triangle_X.Enabled = false;
             Triangle_Y.Enabled = false;
             Triangle_Add.Enabled = false;
+            Message();
+        }
+        
+        private void Sun_C_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var sun = new Sun(Figure.Figure.ErrorClearParse(new string[]{Sun_X.Text, Sun_Y.Text,
+                    Sun_W.Text}));
+                sun.Draw();
+                ShapeContainer.AddFigure(sun);
+            }
+            catch (Exception exception)
+            {
+                Figure.Figure.Messages.Add(exception.Message);
+            }
             Message();
         }
 
@@ -375,67 +437,6 @@ namespace WindowsFormsLab_2_0
                 figure.ChangeWeight(figure, newWeight);
             }
             Message();
-        }
-
-        private void Rectangle_M_B_Click(object sender, EventArgs e)
-        {
-            Rectangle_GB.Location = new Point(1205, 12);
-            Rectangle_GB.Visible = true;
-            Menu_GB.Visible = false;
-        }
-
-        private void Square_M_B_Click(object sender, EventArgs e)
-        {
-            Square_GB.Location = new Point(1205, 12);
-            Square_GB.Visible = true;
-            Menu_GB.Visible = false;
-        }
-
-        private void Ellipse_M_B_Click(object sender, EventArgs e)
-        {
-            Ellipse_GB.Location = new Point(1205, 12);
-            Ellipse_GB.Visible = true;
-            Menu_GB.Visible = false;
-        }
-
-        private void Circle_M_B_Click(object sender, EventArgs e)
-        {
-            Circle_GB.Location = new Point(1205, 12);
-            Circle_GB.Visible = true;
-            Menu_GB.Visible = false;
-        }
-
-        private void Polygon_M_B_Click(object sender, EventArgs e)
-        {
-            Polygon_GB.Location = new Point(1205, 12);
-            Polygon_GB.Visible = true;
-            Menu_GB.Visible = false;
-        }
-
-        private void Triangle_M_B_Click(object sender, EventArgs e)
-        {
-            Triangle_GB.Location = new Point(1205, 12);
-            Triangle_GB.Visible = true;
-            Menu_GB.Visible = false;
-        }
-
-        private void Sun_M_B_Click(object sender, EventArgs e)
-        {
-            Sun_GB.Location = new Point(1205, 12);
-            Sun_GB.Visible = true;
-            Menu_GB.Visible = false;
-        }
-
-        private void Back_Click(object sender, EventArgs e)
-        {
-            Menu_GB.Visible = true;
-            Rectangle_GB.Visible = false;
-            Square_GB.Visible = false;
-            Ellipse_GB.Visible = false;
-            Circle_GB.Visible = false;
-            Polygon_GB.Visible = false;
-            Triangle_GB.Visible = false;
-            Sun_GB.Visible = false;
         }
     }
 }
