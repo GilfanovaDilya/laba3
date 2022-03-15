@@ -17,7 +17,6 @@ namespace Figure
 
     public abstract class Figure
     {
-        public static List<string> Messages { get; set; } = new List<string>();
         public List<PointF> Points { get; set; } = new List<PointF>();
         public Color color = Color.Black;
         public int weight = 2;
@@ -66,37 +65,6 @@ namespace Figure
             }
 
             return result;
-        }
-
-        public void ChangeColor(Figure figure, Color newColor)
-        {
-            figure.color = newColor;
-            figure.Draw();
-        }
-
-        public void ChangeWeight(Figure figure, int newWeight)
-        {
-            figure.weight = newWeight;
-            figure.Draw();
-        }
-
-        public void ChangeLineDim(float[] fForChange)
-        {
-            float _w = fForChange[0],
-                _h = fForChange.Length == 1 ? fForChange[0] : fForChange[1];
-            if ((Points[1].X + _w < Points[0].X) || (Points[1].Y + _h < Points[0].Y) ||
-                (Points[1].X + _w) > Init.pictureBox.Width || (Points[1].Y + _h) > Init.pictureBox.Height)
-            {
-                Messages.Add("You enter invalid values. Try one more time)");
-                return;
-            }
-
-            var point = Points[1];
-            point.X += _w;
-            point.Y += _h;
-            Points[1] = point;
-            DeleteF(this, Init.pictureBox, false);
-            Draw();
         }
 
         public bool OutOfBoundCheckForCreation(float[] coordFloats)
