@@ -45,7 +45,7 @@ namespace Figure
             ShapeContainer.figures.Remove(deletedFigure);
             graphics.Clear(Color.White);
             pictureBox.Image = Init.bitmap;
-            foreach (var f in ShapeContainer.figures)
+            foreach (var f in ShapeContainer.figures.Where(f => !(f is APoints)))
             {
                 f.Draw();
             }
