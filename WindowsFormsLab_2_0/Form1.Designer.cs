@@ -31,7 +31,6 @@ namespace WindowsFormsLab_2_0
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.input_TB = new System.Windows.Forms.TextBox();
             this.Log_L = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -93,7 +92,6 @@ namespace WindowsFormsLab_2_0
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.TextBox input_TB;
         private System.Windows.Forms.Label Log_L;
     }

@@ -16,7 +16,7 @@ namespace Figure
         {
             if (Name != null && Points.Count < (Name.StartsWith("Triangle") ? 3 : 2)) return;
             var graphic = Graphics.FromImage(Init.bitmap);
-            graphic.DrawPolygon(new Pen(color, weight), Points.ToArray());
+            graphic.DrawPolygon(Init.pen, Points.ToArray());
             Init.pictureBox.Image = Init.bitmap;
         }
     }

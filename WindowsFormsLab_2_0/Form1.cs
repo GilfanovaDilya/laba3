@@ -9,6 +9,7 @@ namespace WindowsFormsLab_2_0
 {
     public partial class Form1 : Form
     {
+        private List<string> Log = new List<string>();
         public Form1()
         {
             InitializeComponent();
@@ -17,8 +18,6 @@ namespace WindowsFormsLab_2_0
                     pictureBox1.ClientSize.Height);
             Init.pictureBox = pictureBox1;
             Init.pen = new Pen(Init.color, Init.weight);
-            colorDialog1.FullOpen = true;
-            colorDialog1.Color = Init.color;
         }
 
         private Stack<Operator> operators = new
@@ -40,6 +39,17 @@ namespace WindowsFormsLab_2_0
                      item == ')' || item == ' ');
         }
 
+        public bool ErrorCheck(int numberOfOperand)
+        {
+            var flag = false;
+            foreach (var figure in ShapeContainer.figures.Where(figure =>
+                         figure.Name == operands.Peek().value.ToString()))
+            {
+                flag = true;
+            }
+            return operands.Count != numberOfOperand && flag;
+        }
+
         private void SelectingPerformingOperation(Operator op)
         {
             switch (op.symbolOperator)
@@ -56,7 +66,7 @@ namespace WindowsFormsLab_2_0
                     }
 
                     ShapeContainer.AddFigure(aPoints);
-                    Log_L.Text += $@"Array of points successfully added with name {aPoints.Name}";
+                    Log.Add($@"Array of points successfully added with name {aPoints.Name}");
                     //op.operatorMethod();
                     break;
                 case 'P':
@@ -71,7 +81,7 @@ namespace WindowsFormsLab_2_0
                     var polygon = new Polygon(operands.Pop().value.ToString(), points);
                     polygon.Draw();
                     ShapeContainer.AddFigure(polygon);
-                    Log_L.Text += $@"Polygon {polygon.Name} is drawn successfully";
+                    Log.Add($@"Polygon {polygon.Name} is drawn successfully");
                     //op.operatorMethod();
                     break;
                 case 'M':
@@ -83,8 +93,7 @@ namespace WindowsFormsLab_2_0
                     {
                         figure.MoveTo(new []{dx,dy});
                     }
-
-                    Log_L.Text += $@"Polygon {nameM} is moved successfully";
+                    Log.Add($@"Polygon {nameM} is moved successfully");
                     break;
                 case 'D':
                     if (operands.Count != 1) throw new Exception($"Invalid input in {input_TB.Text}");
@@ -93,7 +102,8 @@ namespace WindowsFormsLab_2_0
                     {
                         figure.DeleteF(figure, Init.pictureBox);
                     }
-                    Log_L.Text += $@"Polygon {nameD} is deleted successfully";
+
+                    Log.Add($@"Polygon {nameD} is deleted successfully");
                     break;
             }
         }
@@ -182,12 +192,13 @@ namespace WindowsFormsLab_2_0
                             {
                                 operands.Pop();
                                 SelectingPerformingOperation(operators.Peek());
+
                                 operands = new Stack<Operand>();
                                 operators = new Stack<Operator>();
                             }
                             else
                             {
-                                Log_L.Text += @"Wrong operator";
+                                Log.Add(@"Wrong operator");
                             }
 
                             break;
@@ -197,7 +208,13 @@ namespace WindowsFormsLab_2_0
             }
             catch (Exception exception)
             {
-                Log_L.Text += exception.Message;
+                Log.Add(exception.Message); 
+            }
+
+            Log_L.Text = " ";
+            for (var i = Log.Count - 1; i >= 0; i--)
+            {
+                Log_L.Text += Log[i] + "\n";
             }
 
             input_TB.Text = "";

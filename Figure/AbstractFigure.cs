@@ -18,8 +18,6 @@ namespace Figure
     public abstract class Figure
     {
         public List<PointF> Points { get; set; } = new List<PointF>();
-        public Color color = Color.Black;
-        public int weight = 2;
         public string Name { get; set; }
         public abstract void Draw();
 
@@ -69,10 +67,10 @@ namespace Figure
 
         public bool OutOfBoundCheckForCreation(float[] coordFloats)
         {
-            float x = coordFloats[0];
-            float y = coordFloats[1];
-            float w = coordFloats.Length == 2 ? 0 : coordFloats[2];
-            float h = coordFloats.Length <= 3 ? w : coordFloats[3];
+            var x = coordFloats[0];
+            var y = coordFloats[1];
+            var w = coordFloats.Length == 2 ? 0 : coordFloats[2];
+            var h = coordFloats.Length <= 3 ? w : coordFloats[3];
             return x < 0 || y < 0 || x + w > Init.pictureBox.Width || y + h > Init.pictureBox.Height;
         }
 
