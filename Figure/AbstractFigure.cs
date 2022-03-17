@@ -58,7 +58,7 @@ namespace Figure
             {
                 if (!float.TryParse(inputStrings[i], out result[i]))
                 {
-                    throw new ArgumentException("Invalid input");
+                    throw new ArgumentException("Invalid input of numbers");
                 }
             }
 

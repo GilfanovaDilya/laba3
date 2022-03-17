@@ -69,13 +69,12 @@ namespace WindowsFormsLab_2_0
             this.Log_L.Name = "Log_L";
             this.Log_L.Size = new System.Drawing.Size(234, 794);
             this.Log_L.TabIndex = 18;
-            this.Log_L.Text = "label2";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2006, 815);
+            this.ClientSize = new System.Drawing.Size(1452, 815);
             this.Controls.Add(this.Log_L);
             this.Controls.Add(this.input_TB);
             this.Controls.Add(this.label1);
