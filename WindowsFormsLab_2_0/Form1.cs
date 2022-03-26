@@ -10,6 +10,7 @@ namespace WindowsFormsLab_2_0
     public partial class Form1 : Form
     {
         private List<string> Log = new List<string>();
+
         public Form1()
         {
             InitializeComponent();
@@ -30,24 +31,20 @@ namespace WindowsFormsLab_2_0
         {
             if (operators.Count != 0 && operators.Peek().symbolOperator == '(')
             {
-                return !(item == ',' || item == '(' ||
-                         item == ')' || item == ' ');
+                return !(item == ',' ||
+                         item == '(' ||
+                         item == ')' ||
+                         item == ' ' );
             }
 
-            return !(item == 'A' || item == 'P' || item == 'M' || item
-                     == 'D' || item == ',' || item == '(' ||
-                     item == ')' || item == ' ');
-        }
-
-        public bool ErrorCheck(int numberOfOperand)
-        {
-            var flag = false;
-            foreach (var figure in ShapeContainer.figures.Where(figure =>
-                         figure.Name == operands.Peek().value.ToString()))
-            {
-                flag = true;
-            }
-            return operands.Count != numberOfOperand && flag;
+            return !(item == 'A' || 
+                     item == 'P' || 
+                     item == 'M' || 
+                     item == 'D' || 
+                     item == ',' || 
+                     item == '(' || 
+                     item == ')' || 
+                     item == ' ' );
         }
 
         private void SelectingPerformingOperation(Operator op)
@@ -60,6 +57,7 @@ namespace WindowsFormsLab_2_0
                     stackOperand.Reverse();
                     var aPoints = new APoints(stackOperand[0]);
                     var length = Figure.Figure.ErrorClearParse(new[] {stackOperand[1]})[0] * 2;
+                    if (length < stackOperand.Count - 2) throw new Exception($"Invalid input in {input_TB.Text}");
                     for (var i = 0; i < length; i += 2)
                     {
                         aPoints.AddDot(new[] {stackOperand[i + 2], stackOperand[i + 3]});
@@ -70,7 +68,9 @@ namespace WindowsFormsLab_2_0
                     //op.operatorMethod();
                     break;
                 case 'P':
-                    if (operands.Count != 2 || ShapeContainer.figures.All(figure => figure.Name != operands.Peek().value.ToString())) throw new Exception($"Invalid input in {input_TB.Text}");
+                    if (operands.Count != 2 ||
+                        ShapeContainer.figures.All(figure => figure.Name != operands.Peek().value.ToString()))
+                        throw new Exception($"Invalid input in {input_TB.Text}");
                     var points = new List<PointF>();
                     foreach (var figure in ShapeContainer.figures.Where(figure =>
                                  figure.Name == operands.Peek().value.ToString()))
@@ -78,6 +78,7 @@ namespace WindowsFormsLab_2_0
                         points.AddRange(figure.Points);
                         operands.Pop();
                     }
+
                     var polygon = new Polygon(operands.Pop().value.ToString(), points);
                     polygon.Draw();
                     ShapeContainer.AddFigure(polygon);
@@ -89,17 +90,20 @@ namespace WindowsFormsLab_2_0
                     var dy = Figure.Figure.ErrorClearParse(new[] {operands.Pop().value.ToString()})[0];
                     var dx = Figure.Figure.ErrorClearParse(new[] {operands.Pop().value.ToString()})[0];
                     var nameM = operands.Pop().value.ToString();
-                    if (ShapeContainer.figures.All(figure => figure.Name != nameM)) throw new Exception($"Invalid input in {input_TB.Text}");
+                    if (ShapeContainer.figures.All(figure => figure.Name != nameM))
+                        throw new Exception($"Invalid input in {input_TB.Text}");
                     foreach (var figure in ShapeContainer.figures.Where(figure => figure.Name == nameM))
                     {
-                        figure.MoveTo(new []{dx,dy});
+                        figure.MoveTo(new[] {dx, dy});
                     }
+
                     Log.Add($@"Polygon {nameM} is moved successfully");
                     break;
                 case 'D':
                     if (operands.Count != 1) throw new Exception($"Invalid input in {input_TB.Text}");
                     var nameD = operands.Pop().value.ToString();
-                    if (ShapeContainer.figures.All(figure => figure.Name != nameD)) throw new Exception($"Invalid input in {input_TB.Text}");
+                    if (ShapeContainer.figures.All(figure => figure.Name != nameD))
+                        throw new Exception($"Invalid input in {input_TB.Text}");
                     foreach (var figure in ShapeContainer.figures.Where(figure => figure.Name == nameD))
                     {
                         figure.DeleteF(figure, Init.pictureBox);
@@ -119,14 +123,7 @@ namespace WindowsFormsLab_2_0
                 {
                     if (IsNotOperation(inputChar))
                     {
-                        if (!char.IsDigit(inputChar))
-                        {
-                            operands.Push(new Operand(operands.Pop().value.ToString() + inputChar));
-                        }
-                        else
-                        {
-                            operands.Push(new Operand(operands.Pop().value.ToString() + inputChar));
-                        }
+                        operands.Push(new Operand(operands.Pop().value.ToString() + inputChar));
                     }
                     else if (operands.Count == 0 || operands.Peek().value.ToString() != "")
                     {
@@ -136,32 +133,8 @@ namespace WindowsFormsLab_2_0
                     switch (inputChar)
                     {
                         case 'A':
-                        {
-                            if (operators.Count == 0)
-                            {
-                                operators.Push(OperatorContainer.FindOperator(inputChar));
-                            }
-
-                            break;
-                        }
                         case 'P':
-                        {
-                            if (operators.Count == 0)
-                            {
-                                operators.Push(OperatorContainer.FindOperator(inputChar));
-                            }
-
-                            break;
-                        }
                         case 'M':
-                        {
-                            if (operators.Count == 0)
-                            {
-                                operators.Push(OperatorContainer.FindOperator(inputChar));
-                            }
-
-                            break;
-                        }
                         case 'D':
                         {
                             if (operators.Count == 0)
@@ -171,6 +144,7 @@ namespace WindowsFormsLab_2_0
 
                             break;
                         }
+
                         case '(':
                             operators.Push(OperatorContainer.FindOperator(inputChar));
                             break;
@@ -194,9 +168,6 @@ namespace WindowsFormsLab_2_0
                             {
                                 operands.Pop();
                                 SelectingPerformingOperation(operators.Peek());
-
-                                operands = new Stack<Operand>();
-                                operators = new Stack<Operator>();
                             }
                             else
                             {
@@ -210,16 +181,18 @@ namespace WindowsFormsLab_2_0
             }
             catch (Exception exception)
             {
-                Log.Add(exception.Message); 
+                Log.Add(exception.Message);
             }
 
-            Log_L.Text = " ";
+            Log_L.Text = "";
             for (var i = Log.Count - 1; i >= 0; i--)
             {
                 Log_L.Text += Log[i] + "\n";
             }
 
             input_TB.Text = "";
+            operands = new Stack<Operand>();
+            operators = new Stack<Operator>();
         }
     }
 }
