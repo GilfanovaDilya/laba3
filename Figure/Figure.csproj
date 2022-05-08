@@ -44,8 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractFigure.cs" />
-    <Compile Include="Points.cs" />
-    <Compile Include="Polygon.cs" />
+    <Compile Include="Ellipse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeContainer.cs" />
   </ItemGroup>

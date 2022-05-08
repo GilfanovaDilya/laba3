@@ -37,8 +37,7 @@ namespace WindowsFormsLab_2_0
                          item == ' ' );
             }
 
-            return !(item == 'A' || 
-                     item == 'P' || 
+            return !(item == 'E' || 
                      item == 'M' || 
                      item == 'D' || 
                      item == ',' || 
@@ -51,39 +50,22 @@ namespace WindowsFormsLab_2_0
         {
             switch (op.symbolOperator)
             {
-                case 'A':
-                    if (operands.Count < 4) throw new Exception($"Invalid input in {input_TB.Text}");
-                    var stackOperand = operands.Select(operand => operand.value.ToString()).ToList();
-                    stackOperand.Reverse();
-                    var aPoints = new APoints(stackOperand[0]);
-                    var length = Figure.Figure.ErrorClearParse(new[] {stackOperand[1]})[0] * 2;
-                    if (length < stackOperand.Count - 2) throw new Exception($"Invalid input in {input_TB.Text}");
-                    for (var i = 0; i < length; i += 2)
+                case 'E':
+                    if (operands.Count != 5) throw new Exception($"Invalid input in {input_TB.Text}");
+                    var h = Figure.Figure.ErrorClearParse(new[] { operands.Pop().value.ToString() })[0];
+                    var w = Figure.Figure.ErrorClearParse(new[] { operands.Pop().value.ToString() })[0];
+                    var y = Figure.Figure.ErrorClearParse(new[] { operands.Pop().value.ToString() })[0];
+                    var x = Figure.Figure.ErrorClearParse(new[] { operands.Pop().value.ToString() })[0];
+                    var name = operands.Pop().value.ToString();
+                    if (ShapeContainer.figures.FirstOrDefault(figure => figure.Name == name) != null)
                     {
-                        aPoints.AddDot(new[] {stackOperand[i + 2], stackOperand[i + 3]});
-                    }
-
-                    ShapeContainer.AddFigure(aPoints);
-                    Log.Add($@"Array of points successfully added with name {aPoints.Name}");
-                    //op.operatorMethod();
-                    break;
-                case 'P':
-                    if (operands.Count != 2 ||
-                        ShapeContainer.figures.All(figure => figure.Name != operands.Peek().value.ToString()))
                         throw new Exception($"Invalid input in {input_TB.Text}");
-                    var points = new List<PointF>();
-                    foreach (var figure in ShapeContainer.figures.Where(figure =>
-                                 figure.Name == operands.Peek().value.ToString()))
-                    {
-                        points.AddRange(figure.Points);
-                        operands.Pop();
                     }
 
-                    var polygon = new Polygon(operands.Pop().value.ToString(), points);
-                    polygon.Draw();
-                    ShapeContainer.AddFigure(polygon);
-                    Log.Add($@"Polygon {polygon.Name} is drawn successfully");
-                    //op.operatorMethod();
+                    var EllipseF = new Ellipse(new[] {x, y, w, h}, name);
+                    EllipseF.Draw();
+                    ShapeContainer.AddFigure(EllipseF);
+                    Log.Add($@"Ellipse {EllipseF.Name} is drawn successfully");
                     break;
                 case 'M':
                     if (operands.Count != 3) throw new Exception($"Invalid input in {input_TB.Text}");
@@ -91,7 +73,9 @@ namespace WindowsFormsLab_2_0
                     var dx = Figure.Figure.ErrorClearParse(new[] {operands.Pop().value.ToString()})[0];
                     var nameM = operands.Pop().value.ToString();
                     if (ShapeContainer.figures.All(figure => figure.Name != nameM))
+                    {
                         throw new Exception($"Invalid input in {input_TB.Text}");
+                    }
                     foreach (var figure in ShapeContainer.figures.Where(figure => figure.Name == nameM))
                     {
                         figure.MoveTo(new[] {dx, dy});
@@ -103,7 +87,9 @@ namespace WindowsFormsLab_2_0
                     if (operands.Count != 1) throw new Exception($"Invalid input in {input_TB.Text}");
                     var nameD = operands.Pop().value.ToString();
                     if (ShapeContainer.figures.All(figure => figure.Name != nameD))
+                    {
                         throw new Exception($"Invalid input in {input_TB.Text}");
+                    }
                     foreach (var figure in ShapeContainer.figures.Where(figure => figure.Name == nameD))
                     {
                         figure.DeleteF(figure, Init.pictureBox);
@@ -125,15 +111,14 @@ namespace WindowsFormsLab_2_0
                     {
                         operands.Push(new Operand(operands.Pop().value.ToString() + inputChar));
                     }
-                    else if (operands.Count == 0 || operands.Peek().value.ToString() != "")
+                    else if (operands.Count == 0 || operands.Peek().value.ToString() != string.Empty)
                     {
                         operands.Push(new Operand(""));
                     }
 
                     switch (inputChar)
                     {
-                        case 'A':
-                        case 'P':
+                        case 'E':
                         case 'M':
                         case 'D':
                         {

@@ -10,8 +10,7 @@ namespace WindowsFormsLab_2_0
 
         static OperatorContainer()
         {
-            operators.Add(new Operator('A'));
-            operators.Add(new Operator('P'));
+            operators.Add(new Operator('E'));
             operators.Add(new Operator('M'));
             operators.Add(new Operator('D'));
             operators.Add(new Operator(','));
